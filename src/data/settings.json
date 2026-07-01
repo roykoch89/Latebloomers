@@ -1,0 +1,17 @@
+{
+  "siteName": "Latebloomers",
+  "tagline": "Electronic music from The Hague.",
+  "domain": "https://wearelatebloomers.nl",
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    { "label": "Releases", "href": "/releases" },
+    { "label": "Events", "href": "/events" },
+    { "label": "About", "href": "/about" }
+  ],
+  "socials": [
+    { "label": "Instagram", "href": "https://instagram.com/wearelatebloomers" },
+    { "label": "SoundCloud", "href": "https://soundcloud.com/latebloomers" },
+    { "label": "Bandcamp", "href": "https://latebloomers.bandcamp.com" },
+    { "label": "Discogs", "href": "https://www.discogs.com/label/latebloomers" }
+  ]
+}

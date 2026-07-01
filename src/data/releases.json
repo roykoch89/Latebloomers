@@ -1,0 +1,32 @@
+[
+  {
+    "id": "001",
+    "catalogNumber": "LB001",
+    "title": "First Release",
+    "slug": "lb001-first-release",
+    "artist": "Various Artists",
+    "releaseDate": null,
+    "format": "Digital",
+    "type": "EP",
+    "label": "Latebloomers",
+    "description": "The first release on Latebloomers.",
+    "artwork": null,
+    "tracklist": [
+      { "position": "A1", "title": "Track Title", "duration": "00:00" }
+    ],
+    "links": {
+      "discogs": null,
+      "soundcloud": null,
+      "bandcamp": null,
+      "spotify": null,
+      "appleMusic": null,
+      "beatport": null
+    },
+    "credits": null,
+    "featured": true,
+    "seo": {
+      "title": "First Release — Latebloomers",
+      "description": "The first release on Latebloomers."
+    }
+  }
+]
