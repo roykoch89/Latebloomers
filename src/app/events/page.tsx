@@ -1,6 +1,8 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import SectionTitle from '@/components/SectionTitle'
+import SoundCloudPlayer from '@/components/SoundCloudPlayer'
 import events from '@/data/events.json'
 
 export const metadata: Metadata = {
@@ -8,8 +10,7 @@ export const metadata: Metadata = {
   description: 'Upcoming and past events by Latebloomers.',
 }
 
-type Event = (typeof events)[number]
-type Artist = Event['lineup'][number]
+type EventType = (typeof events)[number] & { soundcloudEmbed?: string }
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
@@ -20,102 +21,93 @@ function formatDate(dateStr: string) {
   })
 }
 
-function EventRow({ event }: { event: Event }) {
-  return (
-    <article className="border-b border-stone-200 py-10 grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-6 md:gap-12 items-start">
-      {/* Artwork */}
-      <div className="w-20 h-20 flex-shrink-0 relative overflow-hidden border border-stone-200 bg-stone-50">
-        {event.artwork ? (
-          <Image
-            src={event.artwork}
-            alt={event.title}
-            fill
-            className="object-cover"
-            sizes="80px"
-          />
-        ) : (
-          <span className="absolute inset-0 flex items-center justify-center text-xs text-stone-300 select-none">
-            Art
-          </span>
-        )}
-      </div>
+function EventCard({ event }: { event: EventType }) {
+  const isUpcoming = event.status === 'upcoming'
+  const flyerContent = event.artwork ? (
+    <Image
+      src={event.artwork}
+      alt={event.title}
+      width={800}
+      height={800}
+      className="w-full h-auto object-contain"
+      sizes="(max-width: 768px) 100vw, 55vw"
+    />
+  ) : (
+    <div className="aspect-square bg-stone-100 flex items-center justify-center">
+      <span className="text-xs tracking-widest uppercase text-stone-400">{event.title}</span>
+    </div>
+  )
 
-      {/* Info */}
+  return (
+    <article className="grid grid-cols-1 md:grid-cols-[55fr_45fr] gap-10 md:gap-16 items-start py-16 border-b border-stone-200">
+
+      {/* Flyer — clickable only for featured upcoming events */}
       <div>
-        <p className="text-xs tracking-widest uppercase text-stone-400 mb-3">
-          {formatDate(event.date)}&nbsp;&nbsp;·&nbsp;&nbsp;
-          {event.startTime}–{event.endTime}&nbsp;&nbsp;·&nbsp;&nbsp;
-          {event.venue}, {event.locationLabel}
-        </p>
-        <h2 className="text-xl md:text-2xl font-bold tracking-tight text-stone-900 mb-4">
-          {event.title}
-        </h2>
-        <p className="text-sm text-stone-500 leading-relaxed mb-5">
-          {event.description}
-        </p>
-        <div className="flex flex-wrap gap-x-5 gap-y-1">
-          {event.lineup.map((artist: Artist) => (
-            <span key={artist.order} className="text-sm text-stone-600">
-              {artist.name}
+        {isUpcoming && event.featured ? (
+          <Link href="/tickets" className="group block">
+            <div className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.01] group-hover:shadow-xl">
+              {flyerContent}
+            </div>
+          </Link>
+        ) : (
+          <div>{flyerContent}</div>
+        )}
+
+        {/* Date + location */}
+        <div className="flex items-center gap-3 mt-4">
+          {isUpcoming && (
+            <span className="text-xs tracking-widest uppercase bg-brand-blue text-white px-2 py-1">
+              Upcoming
             </span>
-          ))}
+          )}
+          <p className="text-xs tracking-widest uppercase text-stone-500">
+            {formatDate(event.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{event.locationLabel}
+          </p>
         </div>
       </div>
 
-      {/* Actions */}
-      <div className="flex flex-wrap gap-3 md:flex-col md:items-end">
-        {event.ticketUrl && (
-          <a
-            href={event.ticketUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs tracking-widest uppercase border border-stone-900 px-4 py-2.5 hover:bg-stone-900 hover:text-white transition-colors"
-          >
-            Tickets
-          </a>
-        )}
-        {event.instagramUrl && (
-          <a
-            href={event.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs tracking-widest uppercase text-stone-400 hover:text-stone-900 transition-colors"
-          >
-            Instagram
-          </a>
-        )}
-      </div>
+      {/* Right: SoundCloud */}
+      {event.soundcloudEmbed && (
+        <div className="flex flex-col gap-6">
+          <SoundCloudPlayer url={event.soundcloudEmbed} />
+          {isUpcoming && event.featured && (
+            <Link
+              href="/tickets"
+              className="text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3.5 hover:bg-stone-900 transition-colors"
+            >
+              Tickets
+            </Link>
+          )}
+        </div>
+      )}
     </article>
   )
 }
 
 export default function EventsPage() {
-  const upcoming = events.filter((e) => e.status === 'upcoming')
-  const past = events.filter((e) => e.status === 'past')
+  const typedEvents = events as EventType[]
+  const upcoming = typedEvents.filter((e) => e.status === 'upcoming')
+  const past = typedEvents.filter((e) => e.status === 'past')
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-20 md:py-28">
       <SectionTitle label="Calendar" title="Events" />
 
       {upcoming.length > 0 && (
-        <section className="mb-24">
-          <p className="text-xs tracking-widest uppercase text-stone-400 mb-0 pb-4 border-b border-stone-200">
+        <section className="mb-4">
+          <p className="text-xs tracking-widest uppercase text-stone-400 pb-4 border-b border-stone-200">
             Upcoming
           </p>
-          {upcoming.map((event) => (
-            <EventRow key={event.id} event={event} />
-          ))}
+          {upcoming.map((e) => <EventCard key={e.id} event={e} />)}
         </section>
       )}
 
       {past.length > 0 && (
         <section>
-          <p className="text-xs tracking-widest uppercase text-stone-400 mb-0 pb-4 border-b border-stone-200">
+          <p className="text-xs tracking-widest uppercase text-stone-400 pb-4 border-b border-stone-200 mt-8">
             Archive
           </p>
-          {past.map((event) => (
-            <EventRow key={event.id} event={event} />
-          ))}
+          {past.map((e) => <EventCard key={e.id} event={e} />)}
         </section>
       )}
 

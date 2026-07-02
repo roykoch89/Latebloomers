@@ -11,6 +11,13 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
+      colors: {
+        brand: {
+          blue: '#3B5090',
+          steel: '#B0C5D0',
+          bg: '#F5F7FA',
+        },
+      },
     },
   },
   plugins: [],

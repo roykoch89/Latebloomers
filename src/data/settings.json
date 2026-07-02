@@ -6,12 +6,12 @@
     { "label": "Home", "href": "/" },
     { "label": "Releases", "href": "/releases" },
     { "label": "Events", "href": "/events" },
-    { "label": "About", "href": "/about" }
+    { "label": "Tickets", "href": "/tickets" }
   ],
   "socials": [
-    { "label": "Instagram", "href": "https://instagram.com/wearelatebloomers" },
-    { "label": "SoundCloud", "href": "https://soundcloud.com/latebloomers" },
-    { "label": "Bandcamp", "href": "https://latebloomers.bandcamp.com" },
+    { "label": "Instagram", "href": "https://www.instagram.com/latebloomers.rec/" },
+    { "label": "SoundCloud", "href": "https://soundcloud.com/latebloomers-808590229" },
     { "label": "Discogs", "href": "https://www.discogs.com/label/latebloomers" }
-  ]
+  ],
+  "email": "latebloomers.rec@gmail.com"
 }
