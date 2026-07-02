@@ -1,0 +1,53 @@
+﻿[
+  {
+    "id": "001",
+    "title": "Latebloomers at Boomerang",
+    "slug": "latebloomers-at-boomerang-2026-08-08",
+    "date": "2026-08-08",
+    "startTime": "23:00",
+    "endTime": "06:00",
+    "venue": "Boomerang",
+    "locationLabel": "The Hague",
+    "type": "club night",
+    "status": "upcoming",
+    "description": "Latebloomers returns to Boomerang for a night of deep, percussive, and hypnotic sounds.",
+    "lineup": [
+      { "name": "Giammarco Orsini", "order": 1 },
+      { "name": "DJ Tjizza", "order": 2 },
+      { "name": "Roy Koch", "order": 3 },
+      { "name": "DJ Z", "order": 4 }
+    ],
+    "artwork": "/images/events/Event1.png",
+    "ticketUrl": null,
+    "instagramUrl": null,
+    "soundcloudEmbed": "https://soundcloud.com/circolocoibizaofficial/circoloco-radio-443-giammarco",
+    "featured": true,
+    "seo": {
+      "title": "Latebloomers at Boomerang \u2014 8 August 2026",
+      "description": "Latebloomers presents a night at Boomerang, The Hague featuring Giammarco Orsini, DJ Tjizza, Roy Koch and DJ Z."
+    }
+  },
+  {
+    "id": "002",
+    "title": "Latebloomers x Miami Beat$",
+    "slug": "latebloomers-x-miami-beats-2026-02-28",
+    "date": "2026-02-28",
+    "startTime": null,
+    "endTime": null,
+    "venue": null,
+    "locationLabel": "Rotterdam",
+    "type": "club night",
+    "status": "past",
+    "description": null,
+    "lineup": [],
+    "artwork": "/images/events/miami-beats.jpg",
+    "ticketUrl": null,
+    "instagramUrl": null,
+    "soundcloudEmbed": "https://soundcloud.com/trommelmusic/dj-tjizza-trommel-insession-165-powered-by-alphatheta",
+    "featured": false,
+    "seo": {
+      "title": "Latebloomers x Miami Beat$ \u2014 28 February 2026",
+      "description": "Latebloomers x Miami Beat$ in Rotterdam, 28 February 2026."
+    }
+  }
+]
