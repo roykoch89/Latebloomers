@@ -10,35 +10,26 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-stone-200">
-      {/*
-        Mobile: flex row — logo left, nav right (justify-between)
-        Desktop: 3-col grid — spacer | logo centred | nav right
-      */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-16
-                      flex items-center justify-between
-                      md:grid md:grid-cols-3">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between gap-4">
 
-        {/* Desktop left spacer (hidden on mobile) */}
-        <div className="hidden md:block" />
-
-        {/* Logo — left on mobile, centred on desktop */}
+        {/* Logo — left, links to home */}
         <Link
           href="/"
           aria-label="Latebloomers home"
-          className="flex md:justify-center"
+          className="flex-shrink-0"
         >
           <Image
             src="/images/brand/logo-dark.png"
             alt="Latebloomers"
-            width={80}
-            height={45}
-            className="h-5 w-auto object-contain"
+            width={120}
+            height={68}
+            className="h-7 w-auto object-contain"
             priority
           />
         </Link>
 
-        {/* Navigation — right on both breakpoints */}
-        <nav className="flex items-center justify-end gap-4 md:gap-7">
+        {/* Navigation — right */}
+        <nav className="flex items-center gap-4 sm:gap-5 md:gap-8">
           {settings.navigation.slice(1).map((item) => (
             <Link
               key={item.href}

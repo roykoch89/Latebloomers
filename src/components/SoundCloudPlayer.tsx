@@ -5,7 +5,7 @@
 
 export default function SoundCloudPlayer({ url, className = '' }: SoundCloudPlayerProps) {
   const isPlaylist = url.includes('/sets/')
-  const height = isPlaylist ? 300 : 166
+  const height = isPlaylist ? 270 : 150
   const embedUrl =
     `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}` +
     `&color=%233B5090&auto_play=false&hide_related=true` +

@@ -2,7 +2,6 @@
 
 type Settings = typeof settings & {
   email?: string
-  footerCredits?: string[]
 }
 const s = settings as Settings
 
@@ -10,18 +9,9 @@ export default function Footer() {
   return (
     <footer className="border-t border-stone-200 mt-24 bg-white">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-10
-                      flex flex-col md:flex-row items-start justify-between gap-8">
+                      flex flex-col md:flex-row items-start justify-end gap-8">
 
-        {/* Left: credit lines */}
-        <div className="flex flex-col gap-1">
-          {(s.footerCredits ?? []).map((line) => (
-            <span key={line} className="text-xs text-stone-400">
-              {line}
-            </span>
-          ))}
-        </div>
-
-        {/* Right: socials + mail */}
+        {/* Socials + mail */}
         <nav className="flex flex-wrap items-center gap-6 md:gap-10">
           {settings.socials.map((social) => (
             <a

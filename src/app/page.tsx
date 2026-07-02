@@ -10,15 +10,16 @@ export const metadata: Metadata = {
   description: 'Slow growing house music from The Hague and Rotterdam.',
 }
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+type EventWithSC = (typeof events)[number] & {
+  soundcloudEmbed?: string
+  soundcloudEmbeds?: string[]
 }
 
-type EventWithSC = (typeof events)[number] & { soundcloudEmbed?: string }
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric',
+  })
+}
 
 export default function HomePage() {
   const featuredEvent =
@@ -31,51 +32,58 @@ export default function HomePage() {
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12">
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section className="py-16 md:py-28 border-b border-stone-200">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 leading-tight mb-6">
-          Slow Growing<br />House Music
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-tight mb-6">
+          Slow Growing House Music
         </h1>
-        <p className="text-lg md:text-xl text-stone-500 max-w-sm leading-relaxed">
+        <p className="text-xl md:text-2xl text-stone-500 max-w-sm leading-relaxed">
           From The Hague and Rotterdam with love
         </p>
       </section>
 
-      {/* ── Featured Event ── */}
-      {featuredEvent && (
-        <section className="py-16 md:py-24 border-b border-stone-200">
-          <p className="text-xs tracking-widest uppercase text-stone-400 mb-8">
-            Next event
-          </p>
+      {/* Featured Event */}
+      {featuredEvent && (() => {
+        const scUrls: string[] =
+          (featuredEvent.soundcloudEmbeds && featuredEvent.soundcloudEmbeds.length > 0)
+            ? featuredEvent.soundcloudEmbeds
+            : featuredEvent.soundcloudEmbed
+              ? [featuredEvent.soundcloudEmbed]
+              : []
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+        return (
+          <section className="py-16 md:py-24 border-b border-stone-200">
+            <p className="text-xs tracking-widest uppercase text-stone-400 mb-8">
+              Next event
+            </p>
 
-            {/* Left column: date + flyer */}
-            <div>
-              {/* Date + location ABOVE flyer */}
-              <p className="text-xs tracking-widest uppercase text-stone-500 mb-4">
-                {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-start">
 
-              {/* Mobile-only Tickets button above flyer */}
-              <Link
-                href="/tickets"
-                className="md:hidden block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3 hover:bg-stone-900 transition-colors mb-4"
-              >
-                Tickets
-              </Link>
+              {/* Left: date + flyer */}
+              <div>
+                <p className="text-sm tracking-wide uppercase text-stone-600 font-medium mb-4">
+                  {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
+                </p>
 
-              {/* Flyer */}
-              <Link href="/tickets" className="group block">
-                <div className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.01] group-hover:shadow-xl">
+                {/* Mobile-only Tickets button */}
+                <Link
+                  href="/tickets"
+                  className="md:hidden block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3 hover:bg-stone-900 transition-colors mb-4"
+                >
+                  Tickets
+                </Link>
+
+                {/* Flyer — hover on image only */}
+                <Link href="/tickets" className="block overflow-hidden">
                   {featuredEvent.artwork ? (
                     <Image
                       src={featuredEvent.artwork}
                       alt={featuredEvent.title}
                       width={800}
                       height={800}
-                      style={{ width: '100%', height: 'auto', maxHeight: '65vh', objectFit: 'contain' }}
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="transition-opacity duration-300 hover:opacity-85"
+                      style={{ width: '100%', height: 'auto', maxHeight: '90vh', objectFit: 'contain' }}
+                      sizes="(max-width: 768px) 100vw, 60vw"
                       priority
                     />
                   ) : (
@@ -83,36 +91,35 @@ export default function HomePage() {
                       <span className="text-xs tracking-widest uppercase text-stone-300">Artwork</span>
                     </div>
                   )}
-                </div>
-              </Link>
-            </div>
-
-            {/* Right column: SC player + buttons (desktop) */}
-            <div className="flex flex-col gap-4">
-              {featuredEvent.soundcloudEmbed && (
-                <SoundCloudPlayer url={featuredEvent.soundcloudEmbed} />
-              )}
-              <div className="flex flex-col gap-3 mt-1">
-                {/* Desktop-only primary button */}
-                <Link
-                  href="/tickets"
-                  className="hidden md:block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3.5 hover:bg-stone-900 transition-colors"
-                >
-                  Tickets
-                </Link>
-                <Link
-                  href="/events"
-                  className="text-xs tracking-widest uppercase text-center border border-stone-300 text-stone-600 px-6 py-3.5 hover:border-stone-900 hover:text-stone-900 transition-colors"
-                >
-                  View All Events
                 </Link>
               </div>
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* ── Releases grid ── */}
+              {/* Right: SC players + buttons */}
+              <div className="flex flex-col gap-4">
+                {scUrls.map((url, i) => (
+                  <SoundCloudPlayer key={i} url={url} />
+                ))}
+                <div className="flex flex-col gap-3 mt-1">
+                  <Link
+                    href="/tickets"
+                    className="hidden md:block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3.5 hover:bg-stone-900 transition-colors"
+                  >
+                    Tickets
+                  </Link>
+                  <Link
+                    href="/events"
+                    className="text-xs tracking-widest uppercase text-center border border-stone-300 text-stone-600 px-6 py-3.5 hover:border-stone-900 hover:text-stone-900 transition-colors"
+                  >
+                    View All Events
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      })()}
+
+      {/* Releases grid */}
       {displayReleases.length > 0 && (
         <section className="py-16 md:py-24">
           <div className="flex items-baseline justify-between mb-10">

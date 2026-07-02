@@ -12,10 +12,5 @@
     { "label": "Instagram", "href": "https://www.instagram.com/latebloomers.rec/" },
     { "label": "Discogs", "href": "https://www.discogs.com/label/latebloomers" }
   ],
-  "email": "latebloomers.rec@gmail.com",
-  "footerCredits": [
-    "Mastered by Time Item",
-    "Artwork by Lieke Vernooy",
-    "Design by Yung F"
-  ]
+  "email": "latebloomers.rec@gmail.com"
 }

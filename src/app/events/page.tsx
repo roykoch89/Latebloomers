@@ -1,7 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import SectionTitle from '@/components/SectionTitle'
 import SoundCloudPlayer from '@/components/SoundCloudPlayer'
 import events from '@/data/events.json'
 
@@ -10,28 +9,36 @@ export const metadata: Metadata = {
   description: 'Upcoming and past events by Latebloomers.',
 }
 
-type EventType = (typeof events)[number] & { soundcloudEmbed?: string }
+type EventType = (typeof events)[number] & {
+  soundcloudEmbed?: string
+  soundcloudEmbeds?: string[]
+}
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
 }
 
 function EventCard({ event }: { event: EventType }) {
   const isUpcoming = event.status === 'upcoming'
 
-  const flyerImg = event.artwork ? (
+  const scUrls: string[] =
+    (event.soundcloudEmbeds && event.soundcloudEmbeds.length > 0)
+      ? event.soundcloudEmbeds
+      : event.soundcloudEmbed
+        ? [event.soundcloudEmbed]
+        : []
+
+  const flyerImage = event.artwork ? (
     <Image
       src={event.artwork}
       alt={event.title}
       width={800}
       height={800}
-      style={{ width: '100%', height: 'auto', maxHeight: '70vh', objectFit: 'contain' }}
-      sizes="(max-width: 768px) 100vw, 55vw"
+      className="transition-opacity duration-300 hover:opacity-85"
+      style={{ width: '100%', height: 'auto', maxHeight: '90vh', objectFit: 'contain' }}
+      sizes="(max-width: 768px) 100vw, 65vw"
     />
   ) : (
     <div className="aspect-square bg-stone-100 flex items-center justify-center">
@@ -40,37 +47,38 @@ function EventCard({ event }: { event: EventType }) {
   )
 
   return (
-    <article className="grid grid-cols-1 md:grid-cols-[55fr_45fr] gap-10 md:gap-16 items-start py-14 border-b border-stone-200">
+    <article className="grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-10 md:gap-16 items-start py-14 border-b border-stone-200">
 
       {/* Flyer column */}
       <div>
-        {/* Date + location ABOVE flyer */}
+        {/* Date + location above flyer */}
         <div className="flex flex-wrap items-center gap-3 mb-4">
           {isUpcoming && (
             <span className="text-xs tracking-widest uppercase bg-brand-blue text-white px-2 py-1">
               Upcoming
             </span>
           )}
-          <p className="text-xs tracking-widest uppercase text-stone-500">
+          <p className="text-sm tracking-wide uppercase text-stone-600 font-medium">
             {formatDate(event.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{event.locationLabel}
           </p>
         </div>
 
+        {/* Flyer — clickable with image-only hover for featured upcoming */}
         {isUpcoming && event.featured ? (
-          <Link href="/tickets" className="group block">
-            <div className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.01] group-hover:shadow-xl">
-              {flyerImg}
-            </div>
+          <Link href="/tickets" className="block overflow-hidden">
+            {flyerImage}
           </Link>
         ) : (
-          <div>{flyerImg}</div>
+          <div>{flyerImage}</div>
         )}
       </div>
 
       {/* SoundCloud column */}
-      {event.soundcloudEmbed && (
+      {scUrls.length > 0 && (
         <div className="flex flex-col gap-5">
-          <SoundCloudPlayer url={event.soundcloudEmbed} />
+          {scUrls.map((url, i) => (
+            <SoundCloudPlayer key={i} url={url} />
+          ))}
           {isUpcoming && event.featured && (
             <Link
               href="/tickets"
@@ -91,14 +99,13 @@ export default function EventsPage() {
   const past = typedEvents.filter((e) => e.status === 'past')
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-20 md:py-28">
-      <SectionTitle label="Calendar" title="Events" />
+    <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-12 md:py-16">
+      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-stone-900 leading-none mb-16 md:mb-20">
+        Events
+      </h1>
 
       {upcoming.length > 0 && (
         <section className="mb-4">
-          <p className="text-xs tracking-widest uppercase text-stone-400 pb-4 border-b border-stone-200">
-            Upcoming
-          </p>
           {upcoming.map((e) => <EventCard key={e.id} event={e} />)}
         </section>
       )}

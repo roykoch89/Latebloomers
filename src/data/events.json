@@ -21,6 +21,10 @@
     "ticketUrl": null,
     "instagramUrl": null,
     "soundcloudEmbed": "https://soundcloud.com/trommelmusic/dj-tjizza-trommel-insession-165-powered-by-alphatheta",
+    "soundcloudEmbeds": [
+      "https://soundcloud.com/circolocoibizaofficial/circoloco-radio-443-giammarco",
+      "https://soundcloud.com/trommelmusic/dj-tjizza-trommel-insession-165-powered-by-alphatheta"
+    ],
     "featured": true,
     "seo": {
       "title": "Latebloomers at Boomerang \u2014 8 August 2026",

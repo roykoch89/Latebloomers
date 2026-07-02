@@ -44,13 +44,12 @@ export default function TicketsPage() {
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-20 md:py-28">
-      <p className="text-xs tracking-widest uppercase text-stone-400 mb-12">Tickets</p>
 
       {/*
         Mobile: ticket shop first (order-1), flyer second (order-2)
         Desktop: flyer left (order-none), ticket shop right (order-none)
       */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-16 md:gap-24 items-start">
 
         {/* Flyer — order-2 on mobile, natural on desktop */}
         <div className="order-2 md:order-none">
@@ -65,7 +64,7 @@ export default function TicketsPage() {
               alt={featuredEvent.title}
               width={800}
               height={800}
-              style={{ width: '100%', height: 'auto', maxHeight: '70vh', objectFit: 'contain' }}
+              style={{ width: '100%', height: 'auto', maxHeight: '90vh', objectFit: 'contain' }}
               priority
             />
           )}
