@@ -1,30 +1,26 @@
 ﻿'use client'
 
-import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import events from '@/data/events.json'
 
 const featuredEvent = events.find((e) => e.featured && e.status === 'upcoming')
 
 const TICKET_TYPES = [
-  { id: 'tier1', label: 'First Tier', price: 15 },
+  { id: 'tier1', label: 'First Tier',  price: 15 },
   { id: 'tier2', label: 'Second Tier', price: 20 },
 ]
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
 }
 
 export default function TicketsPage() {
   const [quantities, setQuantities] = useState<Record<string, number>>({
-    tier1: 0,
-    tier2: 0,
+    tier1: 0, tier2: 0,
   })
   const [added, setAdded] = useState(false)
 
@@ -34,8 +30,7 @@ export default function TicketsPage() {
   }
 
   const total = TICKET_TYPES.reduce(
-    (sum, t) => sum + (quantities[t.id] ?? 0) * t.price,
-    0
+    (sum, t) => sum + (quantities[t.id] ?? 0) * t.price, 0
   )
   const hasTickets = Object.values(quantities).some((v) => v > 0)
 
@@ -51,30 +46,34 @@ export default function TicketsPage() {
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-20 md:py-28">
       <p className="text-xs tracking-widest uppercase text-stone-400 mb-12">Tickets</p>
 
+      {/*
+        Mobile: ticket shop first (order-1), flyer second (order-2)
+        Desktop: flyer left (order-none), ticket shop right (order-none)
+      */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
 
-        {/* Flyer */}
-        <div>
+        {/* Flyer — order-2 on mobile, natural on desktop */}
+        <div className="order-2 md:order-none">
+          {/* Date + location above flyer */}
+          <p className="text-xs tracking-widest uppercase text-stone-400 mb-4">
+            {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
+          </p>
+
           {featuredEvent.artwork && (
             <Image
               src={featuredEvent.artwork}
               alt={featuredEvent.title}
               width={800}
               height={800}
-              className="w-full h-auto object-contain"
+              style={{ width: '100%', height: 'auto', maxHeight: '70vh', objectFit: 'contain' }}
               priority
             />
           )}
-          <div className="mt-4 space-y-1">
-            <p className="text-xs tracking-widest uppercase text-stone-400">
-              {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
-            </p>
-            <p className="text-sm text-stone-700">{featuredEvent.venue}</p>
-          </div>
+          <p className="text-sm text-stone-700 mt-2">{featuredEvent.venue}</p>
         </div>
 
-        {/* Ticket selector */}
-        <div>
+        {/* Ticket selector — order-1 on mobile, natural on desktop */}
+        <div className="order-1 md:order-none">
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-stone-900 mb-2">
             {featuredEvent.title}
           </h1>
@@ -82,7 +81,7 @@ export default function TicketsPage() {
             Select tickets
           </p>
 
-          <div className="space-y-0 border-t border-stone-200">
+          <div className="border-t border-stone-200">
             {TICKET_TYPES.map((tier) => (
               <div
                 key={tier.id}
@@ -93,8 +92,7 @@ export default function TicketsPage() {
                   <p className="text-xs text-stone-400 mt-0.5">&euro;{tier.price}</p>
                 </div>
 
-                {/* Quantity control */}
-                <div className="flex items-center gap-0 border border-stone-300">
+                <div className="flex items-center border border-stone-300">
                   <button
                     onClick={() => change(tier.id, -1)}
                     className="w-9 h-9 flex items-center justify-center text-stone-500 hover:bg-stone-100 transition-colors text-lg leading-none"
@@ -117,13 +115,11 @@ export default function TicketsPage() {
             ))}
           </div>
 
-          {/* Total */}
           <div className="flex items-center justify-between py-5 border-b border-stone-200 mb-6">
             <p className="text-sm font-medium text-stone-900">Total</p>
             <p className="text-sm font-semibold text-stone-900">&euro;{total}</p>
           </div>
 
-          {/* CTA */}
           <button
             onClick={() => hasTickets && setAdded(true)}
             disabled={!hasTickets}

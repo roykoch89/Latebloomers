@@ -1,18 +1,27 @@
 ﻿import settings from '@/data/settings.json'
 
-// settings.json may include an optional email field
-const s = settings as typeof settings & { email?: string }
+type Settings = typeof settings & {
+  email?: string
+  footerCredits?: string[]
+}
+const s = settings as Settings
 
 export default function Footer() {
-  const year = new Date().getFullYear()
-
   return (
     <footer className="border-t border-stone-200 mt-24 bg-white">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-        <span className="text-xs tracking-widest uppercase text-stone-400">
-          &copy; {year} {settings.siteName}
-        </span>
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-10
+                      flex flex-col md:flex-row items-start justify-between gap-8">
 
+        {/* Left: credit lines */}
+        <div className="flex flex-col gap-1">
+          {(s.footerCredits ?? []).map((line) => (
+            <span key={line} className="text-xs text-stone-400">
+              {line}
+            </span>
+          ))}
+        </div>
+
+        {/* Right: socials + mail */}
         <nav className="flex flex-wrap items-center gap-6 md:gap-10">
           {settings.socials.map((social) => (
             <a
@@ -30,7 +39,7 @@ export default function Footer() {
               href={`mailto:${s.email}`}
               className="text-xs tracking-widest uppercase text-stone-400 hover:text-stone-900 transition-colors"
             >
-              {s.email}
+              Mail
             </a>
           )}
         </nav>

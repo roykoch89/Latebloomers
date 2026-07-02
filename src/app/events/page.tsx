@@ -23,13 +23,14 @@ function formatDate(dateStr: string) {
 
 function EventCard({ event }: { event: EventType }) {
   const isUpcoming = event.status === 'upcoming'
-  const flyerContent = event.artwork ? (
+
+  const flyerImg = event.artwork ? (
     <Image
       src={event.artwork}
       alt={event.title}
       width={800}
       height={800}
-      className="w-full h-auto object-contain"
+      style={{ width: '100%', height: 'auto', maxHeight: '70vh', objectFit: 'contain' }}
       sizes="(max-width: 768px) 100vw, 55vw"
     />
   ) : (
@@ -39,22 +40,12 @@ function EventCard({ event }: { event: EventType }) {
   )
 
   return (
-    <article className="grid grid-cols-1 md:grid-cols-[55fr_45fr] gap-10 md:gap-16 items-start py-16 border-b border-stone-200">
+    <article className="grid grid-cols-1 md:grid-cols-[55fr_45fr] gap-10 md:gap-16 items-start py-14 border-b border-stone-200">
 
-      {/* Flyer — clickable only for featured upcoming events */}
+      {/* Flyer column */}
       <div>
-        {isUpcoming && event.featured ? (
-          <Link href="/tickets" className="group block">
-            <div className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.01] group-hover:shadow-xl">
-              {flyerContent}
-            </div>
-          </Link>
-        ) : (
-          <div>{flyerContent}</div>
-        )}
-
-        {/* Date + location */}
-        <div className="flex items-center gap-3 mt-4">
+        {/* Date + location ABOVE flyer */}
+        <div className="flex flex-wrap items-center gap-3 mb-4">
           {isUpcoming && (
             <span className="text-xs tracking-widest uppercase bg-brand-blue text-white px-2 py-1">
               Upcoming
@@ -64,11 +55,21 @@ function EventCard({ event }: { event: EventType }) {
             {formatDate(event.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{event.locationLabel}
           </p>
         </div>
+
+        {isUpcoming && event.featured ? (
+          <Link href="/tickets" className="group block">
+            <div className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.01] group-hover:shadow-xl">
+              {flyerImg}
+            </div>
+          </Link>
+        ) : (
+          <div>{flyerImg}</div>
+        )}
       </div>
 
-      {/* Right: SoundCloud */}
+      {/* SoundCloud column */}
       {event.soundcloudEmbed && (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
           <SoundCloudPlayer url={event.soundcloudEmbed} />
           {isUpcoming && event.featured && (
             <Link
