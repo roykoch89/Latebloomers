@@ -16,16 +16,12 @@ type EventType = (typeof events)[number] & {
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
-    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    day: 'numeric', month: 'long', year: 'numeric',
   })
 }
 
-/*
- * Upcoming event card
- * Desktop: equal 12% margins both sides, flyer | SC (items-start = SC top with flyer top)
- * Mobile order: Event info -> Flyer -> Tickets -> SC (CSS order)
- */
-function UpcomingEventCard({ event }: { event: EventType }) {
+function EventSection({ event, showTickets }: { event: EventType; showTickets: boolean }) {
+  const isUpcoming = event.status === 'upcoming'
   const scUrls: string[] =
     (event.soundcloudEmbeds && event.soundcloudEmbeds.length > 0)
       ? event.soundcloudEmbeds
@@ -34,24 +30,30 @@ function UpcomingEventCard({ event }: { event: EventType }) {
         : []
 
   return (
-    <article className="py-12 md:py-14 border-b border-stone-200">
-      {/* Balanced 12% margins: equal left and right outer spacing */}
+    <section className="py-10 md:py-16 border-b border-brand-lightBlue/40">
       <div className="md:pl-[12%] md:pr-[12%]">
-        {/* Date + badge above grid */}
-        <div className="flex flex-wrap items-center gap-3 mb-5">
-          <span className="text-xs tracking-widest uppercase bg-brand-blue text-white px-2 py-1">
-            Upcoming
-          </span>
-          <p className="text-sm tracking-wide uppercase text-stone-600 font-medium">
-            {formatDate(event.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{event.locationLabel}
+
+        {/* Editorial event header — same pattern as home page */}
+        <div className="mb-6 md:mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
+            <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+              {isUpcoming ? 'Upcoming' : 'Archive'}
+            </p>
+          </div>
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-brand-navy leading-none">
+            {formatDate(event.date)}
+          </p>
+          <p className="text-base md:text-lg tracking-widest uppercase text-stone-600 font-medium mt-2">
+            {event.locationLabel}
           </p>
         </div>
 
-        {/* Grid — items-start: SC top aligns with flyer top */}
-        <div className="grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-10 md:gap-6 items-start">
+        {/* Grid 50/50: Flyer | Featured Artists — same as home page */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 md:gap-6 items-start">
 
-          {/* Flyer with hover */}
-          {event.artwork ? (
+          {/* Left: Flyer */}
+          {isUpcoming && event.artwork ? (
             <Link href="/tickets" className="inline-block max-w-full overflow-hidden group">
               <Image
                 src={event.artwork}
@@ -59,92 +61,64 @@ function UpcomingEventCard({ event }: { event: EventType }) {
                 width={800}
                 height={800}
                 className="w-auto max-w-full h-auto max-h-[80vh] block transition-transform duration-500 group-hover:scale-[1.03]"
-                sizes="(max-width: 768px) 100vw, 65vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </Link>
-          ) : (
-            <div className="aspect-square bg-stone-100 flex items-center justify-center">
-              <span className="text-xs tracking-widest uppercase text-stone-400">{event.title}</span>
-            </div>
-          )}
-
-          {/* SC + Tickets: CSS order controls mobile sequence */}
-          {scUrls.length > 0 && (
-            <div className="flex flex-col gap-5">
-              {/* Mobile: Tickets first (order-1), SC second (order-2) */}
-              {/* Desktop: SC first (md:order-1), Tickets second (md:order-2) */}
-              <div className="order-2 md:order-1 flex flex-col gap-4">
-                {scUrls.map((url, i) => (
-                  <SoundCloudPlayer key={i} url={url} />
-                ))}
-              </div>
-              <Link
-                href="/tickets"
-                className="order-1 md:order-2 block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-4 hover:opacity-90 transition-opacity"
-              >
-                Tickets
-              </Link>
-            </div>
-          )}
-        </div>
-      </div>
-    </article>
-  )
-}
-
-/*
- * Archive event card
- * Desktop: equal 12% margins both sides, no hover on flyer
- */
-function ArchiveEventCard({ event }: { event: EventType }) {
-  const scUrls: string[] =
-    (event.soundcloudEmbeds && event.soundcloudEmbeds.length > 0)
-      ? event.soundcloudEmbeds
-      : event.soundcloudEmbed
-        ? [event.soundcloudEmbed]
-        : []
-
-  return (
-    <article className="py-12 md:py-14 border-b border-stone-200">
-      {/* Balanced 12% margins: equal left and right outer spacing */}
-      <div className="md:pl-[12%] md:pr-[12%]">
-        {/* Date above grid */}
-        <p className="text-sm tracking-wide uppercase text-stone-600 font-medium mb-5">
-          {formatDate(event.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{event.locationLabel}
-        </p>
-
-        {/* Grid — items-start: SC top aligns with flyer top */}
-        <div className="grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-10 md:gap-6 items-start">
-
-          {/* Flyer — no hover */}
-          <div className="inline-block max-w-full">
-            {event.artwork ? (
+          ) : event.artwork ? (
+            <div className="inline-block max-w-full">
               <Image
                 src={event.artwork}
                 alt={event.title}
                 width={800}
                 height={800}
                 className="w-auto max-w-full h-auto max-h-[80vh] block"
-                sizes="(max-width: 768px) 100vw, 65vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-            ) : (
-              <div className="aspect-square bg-stone-100 flex items-center justify-center">
-                <span className="text-xs tracking-widest uppercase text-stone-400">{event.title}</span>
-              </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="aspect-square bg-stone-100 flex items-center justify-center">
+              <span className="text-xs tracking-widest uppercase text-stone-400">{event.title}</span>
+            </div>
+          )}
 
-          {/* SC — top aligned with flyer */}
+          {/* Right: Featured Artists + SC players */}
           {scUrls.length > 0 && (
-            <div className="flex flex-col gap-4">
-              {scUrls.map((url, i) => (
-                <SoundCloudPlayer key={i} url={url} />
-              ))}
+            <div className="flex flex-col gap-5">
+              <p className="hidden md:block text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+                Featured Artists
+              </p>
+
+              {/* Mobile: Tickets first */}
+              {showTickets && isUpcoming && (
+                <Link
+                  href="/tickets"
+                  className="md:hidden order-1 block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-4 hover:opacity-90 transition-opacity"
+                >
+                  Tickets
+                </Link>
+              )}
+
+              <div className="order-2 md:order-none flex flex-col gap-4">
+                {scUrls.map((url, i) => (
+                  <SoundCloudPlayer key={i} url={url} />
+                ))}
+              </div>
+
+              {showTickets && isUpcoming && (
+                <div className="hidden md:block mt-1">
+                  <Link
+                    href="/tickets"
+                    className="block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-4 hover:opacity-90 transition-opacity"
+                  >
+                    Tickets
+                  </Link>
+                </div>
+              )}
             </div>
           )}
         </div>
       </div>
-    </article>
+    </section>
   )
 }
 
@@ -154,29 +128,22 @@ export default function EventsPage() {
   const past = typedEvents.filter((e) => e.status === 'past')
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-10 md:py-14">
-      {/* No H1 */}
-
-      {upcoming.length > 0 && (
-        <section className="mb-0">
-          {upcoming.map((e) => <UpcomingEventCard key={e.id} event={e} />)}
-        </section>
-      )}
+    <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+      {upcoming.map((e) => (
+        <EventSection key={e.id} event={e} showTickets />
+      ))}
 
       {past.length > 0 && (
-        <section>
-          {/* Archive label — same 12% balanced indent */}
-          <div className="md:pl-[12%] md:pr-[12%]">
-            <p className="text-xs tracking-widest uppercase text-stone-400 py-4 border-b border-stone-200 mt-6">
+        <>
+          <div className="md:pl-[12%] md:pr-[12%] pt-8">
+            <p className="text-xs tracking-widest uppercase text-stone-400 pb-4 border-b border-stone-200">
               Archive
             </p>
           </div>
-          {past.map((e) => <ArchiveEventCard key={e.id} event={e} />)}
-        </section>
-      )}
-
-      {events.length === 0 && (
-        <p className="text-stone-400 text-sm">No events scheduled.</p>
+          {past.map((e) => (
+            <EventSection key={e.id} event={e} showTickets={false} />
+          ))}
+        </>
       )}
     </div>
   )

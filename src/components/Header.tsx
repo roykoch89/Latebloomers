@@ -9,7 +9,7 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-brand-lightBlue/50">
+    <header className="sticky top-0 z-50 bg-brand-bg">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-[70px] flex items-center justify-between gap-4">
 
         {/* Logo — left, responsive sizing */}
@@ -19,7 +19,7 @@ export default function Header() {
             alt="Latebloomers"
             width={250}
             height={44}
-            className="h-[24px] sm:h-9 md:h-11 w-auto object-contain"
+            className="h-[26px] sm:h-[40px] md:h-[48px] w-auto object-contain"
             priority
           />
         </Link>

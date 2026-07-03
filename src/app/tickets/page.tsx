@@ -14,7 +14,7 @@ const TICKET_TYPES = [
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
-    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    day: 'numeric', month: 'long', year: 'numeric',
   })
 }
 
@@ -36,106 +36,114 @@ export default function TicketsPage() {
 
   if (!featuredEvent) {
     return (
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-20 md:py-28">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-10">
         <p className="text-stone-400 text-sm">No upcoming events.</p>
       </div>
     )
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-20 md:py-28">
+    <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+      <section className="py-10 md:py-16 border-b border-brand-lightBlue/40">
+        <div className="md:pl-[12%] md:pr-[12%]">
 
-      {/*
-        Mobile: ticket shop first (order-1), flyer second (order-2)
-        Desktop: flyer left (order-none), ticket shop right (order-none)
-      */}
-<div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-8 items-start">
+          {/* Editorial event header — same pattern as home/events pages */}
+          <div className="mb-6 md:mb-8">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
+              <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+                Tickets
+              </p>
+            </div>
+            <p className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-brand-navy leading-none">
+              {formatDate(featuredEvent.date)}
+            </p>
+            <p className="text-base md:text-lg tracking-widest uppercase text-stone-600 font-medium mt-2">
+              {featuredEvent.locationLabel}
+            </p>
+          </div>
 
-        {/* Flyer — order-2 on mobile, natural on desktop */}
-        <div className="order-2 md:order-none md:pl-[12%]">
-          {/* Date + location above flyer */}
-          <p className="text-xs tracking-widest uppercase text-stone-400 mb-4">
-            {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
-          </p>
+          {/* Grid 50/50: Flyer | Ticket Selector */}
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8 md:gap-6 items-start">
 
-          {featuredEvent.artwork && (
-            <Image
-              src={featuredEvent.artwork}
-              alt={featuredEvent.title}
-              width={800}
-              height={800}
-              className="w-auto max-w-full h-auto max-h-[80vh] block"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          )}
-        </div>
+            {/* Left: Flyer — order-2 on mobile (tickets first on mobile) */}
+            <div className="order-2 md:order-none">
+              {featuredEvent.artwork && (
+                <Image
+                  src={featuredEvent.artwork}
+                  alt={featuredEvent.title}
+                  width={800}
+                  height={800}
+                  className="w-auto max-w-full h-auto max-h-[80vh] block"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              )}
+            </div>
 
-        {/* Ticket selector — order-1 on mobile, balanced right margin on desktop */}
-        <div className="order-1 md:order-none md:pr-[12%]">
-          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-brand-navy mb-3">
-            {featuredEvent.title}
-          </h1>
-          <p className="text-xs tracking-widest uppercase text-stone-400 mb-10">
-            Select tickets
-          </p>
+            {/* Right: Ticket selector — order-1 on mobile */}
+            <div className="order-1 md:order-none flex flex-col gap-0">
+              <p className="hidden md:block text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold mb-5">
+                {featuredEvent.title}
+              </p>
 
-          <div className="border-t border-stone-200">
-            {TICKET_TYPES.map((tier) => (
-              <div
-                key={tier.id}
-                className="flex items-center justify-between py-5 border-b border-stone-200"
-              >
-                <div>
-                  <p className="text-sm font-medium text-stone-900">{tier.label}</p>
-                  <p className="text-xs text-stone-400 mt-0.5">&euro;{tier.price}</p>
-                </div>
-
-                <div className="flex items-center border border-stone-300">
-                  <button
-                    onClick={() => change(tier.id, -1)}
-                    className="w-9 h-9 flex items-center justify-center text-stone-500 hover:bg-stone-100 transition-colors text-lg leading-none"
-                    aria-label="Decrease"
+              <div className="border-t border-stone-200">
+                {TICKET_TYPES.map((tier) => (
+                  <div
+                    key={tier.id}
+                    className="flex items-center justify-between py-5 border-b border-stone-200"
                   >
-                    &minus;
-                  </button>
-                  <span className="w-8 text-center text-sm tabular-nums text-stone-900">
-                    {quantities[tier.id] ?? 0}
-                  </span>
-                  <button
-                    onClick={() => change(tier.id, 1)}
-                    className="w-9 h-9 flex items-center justify-center text-stone-500 hover:bg-stone-100 transition-colors text-lg leading-none"
-                    aria-label="Increase"
-                  >
-                    +
-                  </button>
-                </div>
+                    <div>
+                      <p className="text-sm font-medium text-stone-900">{tier.label}</p>
+                      <p className="text-xs text-stone-400 mt-0.5">&euro;{tier.price}</p>
+                    </div>
+                    <div className="flex items-center border border-stone-300">
+                      <button
+                        onClick={() => change(tier.id, -1)}
+                        className="w-9 h-9 flex items-center justify-center text-stone-500 hover:bg-stone-100 transition-colors"
+                        aria-label="Decrease"
+                      >
+                        &minus;
+                      </button>
+                      <span className="w-8 text-center text-sm tabular-nums text-stone-900">
+                        {quantities[tier.id] ?? 0}
+                      </span>
+                      <button
+                        onClick={() => change(tier.id, 1)}
+                        className="w-9 h-9 flex items-center justify-center text-stone-500 hover:bg-stone-100 transition-colors"
+                        aria-label="Increase"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="flex items-center justify-between py-5 border-b border-stone-200 mb-6">
+                <p className="text-sm font-medium text-stone-900">Total</p>
+                <p className="text-sm font-semibold text-stone-900">&euro;{total}</p>
+              </div>
+
+              <button
+                onClick={() => hasTickets && setAdded(true)}
+                disabled={!hasTickets}
+                className={`w-full text-xs tracking-widest uppercase py-4 transition-colors ${
+                  hasTickets
+                    ? 'bg-brand-blue text-white hover:opacity-90 cursor-pointer'
+                    : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+                }`}
+              >
+                {added ? 'Added to cart' : 'Add to cart'}
+              </button>
+
+              <p className="text-xs text-stone-400 text-center mt-4">
+                This is a visual demo. No payment is processed.
+              </p>
+            </div>
           </div>
-
-          <div className="flex items-center justify-between py-5 border-b border-stone-200 mb-6">
-            <p className="text-sm font-medium text-stone-900">Total</p>
-            <p className="text-sm font-semibold text-stone-900">&euro;{total}</p>
-          </div>
-
-          <button
-            onClick={() => hasTickets && setAdded(true)}
-            disabled={!hasTickets}
-            className={`w-full text-xs tracking-widest uppercase py-4 transition-colors ${
-              hasTickets
-                ? 'bg-brand-blue text-white hover:bg-stone-900 cursor-pointer'
-                : 'bg-stone-200 text-stone-400 cursor-not-allowed'
-            }`}
-          >
-            {added ? 'Added to cart' : 'Add to cart'}
-          </button>
-
-          <p className="text-xs text-stone-400 text-center mt-4">
-            This is a visual demo. No payment is processed.
-          </p>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
