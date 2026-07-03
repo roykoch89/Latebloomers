@@ -40,24 +40,24 @@ export default function HomePage() {
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12">
 
-      {/* Hero — Background1.png blended via CSS background-blend-mode:multiply */}
+      {/* Hero — Background1.png as full-width background, blended via luminosity */}
       <section
         className="relative py-10 md:py-16 border-b border-brand-lightBlue/40 overflow-hidden"
         style={{
           backgroundImage: 'url(/images/brand/Background1.png)',
-          backgroundPosition: 'right center',
+          backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'min(52vw, 580px) auto',
+          backgroundSize: 'cover',
           backgroundBlendMode: 'luminosity',
           backgroundColor: '#E8ECF2',
         }}
       >
         <div className="relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
-            Slow growing house music
+            Slow Growing House Music
           </h1>
-          <p className="text-xl md:text-2xl text-brand-blue font-normal leading-snug max-w-md">
-            from the Hague and Rotterdam with love.
+          <p className="text-lg md:text-xl text-brand-blue font-normal leading-snug max-w-xl">
+            rooted in the Hague and Rotterdam.
           </p>
         </div>
       </section>
