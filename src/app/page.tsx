@@ -38,21 +38,18 @@ export default function HomePage() {
   const [latestRelease, ...otherReleases] = displayReleases
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-
-      {/* Hero — Background1.png as full-width background, blended via luminosity */}
+    <>
+      {/* Hero — outside the max-w container so background reaches full section width */}
       <section
-        className="relative py-10 md:py-16 border-b border-brand-lightBlue/40 overflow-hidden"
+        className="py-10 md:py-16 border-b border-brand-lightBlue/40"
         style={{
           backgroundImage: 'url(/images/brand/Background1.png)',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          backgroundBlendMode: 'luminosity',
-          backgroundColor: '#E8ECF2',
         }}
       >
-        <div className="relative z-10">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-12">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
             Slow Growing House Music
           </h1>
@@ -61,6 +58,9 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* All remaining content inside the standard max-w container */}
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
 
       {/* Featured Event */}
       {featuredEvent && (() => {
@@ -246,5 +246,6 @@ export default function HomePage() {
         </section>
       )}
     </div>
+    </>
   )
 }
