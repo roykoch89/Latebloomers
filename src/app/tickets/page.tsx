@@ -49,10 +49,10 @@ export default function TicketsPage() {
         Mobile: ticket shop first (order-1), flyer second (order-2)
         Desktop: flyer left (order-none), ticket shop right (order-none)
       */}
-      <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-16 md:gap-24 items-start">
+<div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-24 items-start">
 
         {/* Flyer — order-2 on mobile, natural on desktop */}
-        <div className="order-2 md:order-none md:pl-[15%]">
+        <div className="order-2 md:order-none md:pl-[12%]">
           {/* Date + location above flyer */}
           <p className="text-xs tracking-widest uppercase text-stone-400 mb-4">
             {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
