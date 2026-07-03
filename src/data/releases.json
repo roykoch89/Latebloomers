@@ -32,9 +32,10 @@
     "buyUrl": null,
     "buyLabel": "Forthcoming",
     "soundcloudEmbed": "https://soundcloud.com/latebloomers-808590229/sets/first-bloom/s-cBtuNdVWvOf",
+    "soundcloudVisible": false,
     "credits": [
       "Mastered by Time Item",
-      "Artwork BY Lieke Vernooy",
+      "Artwork by Lieke Vernooy",
       "Design by Yung F."
     ],
     "featured": true,

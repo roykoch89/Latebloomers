@@ -68,7 +68,6 @@ export default function TicketsPage() {
               priority
             />
           )}
-          <p className="text-sm text-stone-700 mt-2">{featuredEvent.venue}</p>
         </div>
 
         {/* Ticket selector — order-1 on mobile, natural on desktop */}

@@ -19,7 +19,7 @@ export default function Footer() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs tracking-widest uppercase text-stone-400 hover:text-stone-900 transition-colors"
+              className="text-xs tracking-widest uppercase text-brand-blue hover:text-brand-yellow transition-colors"
             >
               {social.label}
             </a>
@@ -27,9 +27,14 @@ export default function Footer() {
           {s.email && (
             <a
               href={`mailto:${s.email}`}
-              className="text-xs tracking-widest uppercase text-stone-400 hover:text-stone-900 transition-colors"
+              className="flex flex-col gap-0.5 group"
             >
-              Mail
+              <span className="text-xs tracking-widest uppercase text-brand-blue group-hover:text-brand-yellow transition-colors">
+                Mail
+              </span>
+              <span className="text-xs text-brand-dark group-hover:text-brand-yellow/70 transition-colors">
+                {s.email}
+              </span>
             </a>
           )}
         </nav>

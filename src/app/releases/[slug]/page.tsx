@@ -10,6 +10,7 @@ type ReleaseWithImages = Release & {
   buyLabel?: string
   buyUrl?: string | null
   soundcloudEmbed?: string
+  soundcloudVisible?: boolean
   credits?: string | string[]
 }
 
@@ -94,7 +95,7 @@ export default async function ReleaseDetailPage({
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-dark leading-tight mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-navy leading-tight mb-2">
             {release.title}
           </h1>
           <p className="text-base text-stone-500 mb-1">{release.artist}</p>
@@ -132,7 +133,7 @@ export default async function ReleaseDetailPage({
             </div>
           )}
 
-          {release.soundcloudEmbed && (
+          {release.soundcloudEmbed && release.soundcloudVisible !== false && (
             <div className="mb-8">
               <p className="text-xs tracking-widest uppercase text-brand-blue mb-3">Listen</p>
               <SoundCloudPlayer url={release.soundcloudEmbed} />

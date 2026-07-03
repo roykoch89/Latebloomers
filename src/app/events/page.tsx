@@ -100,7 +100,7 @@ export default function EventsPage() {
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-12 md:py-16">
-      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-brand-dark leading-none mb-16 md:mb-20">
+      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-brand-navy leading-none mb-16 md:mb-20">
         Events
       </h1>
 

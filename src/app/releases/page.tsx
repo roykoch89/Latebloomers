@@ -16,6 +16,7 @@ type ReleaseExt = Release & {
   buyLabel?: string
   buyUrl?: string | null
   soundcloudEmbed?: string
+  soundcloudVisible?: boolean
   credits?: string | string[]
 }
 
@@ -161,7 +162,7 @@ function LatestRelease({ release }: { release: ReleaseExt }) {
           </div>
         )}
 
-        {release.soundcloudEmbed && (
+        {release.soundcloudEmbed && release.soundcloudVisible !== false && (
           <div className="mb-8">
             <p className="text-xs tracking-widest uppercase text-brand-blue mb-3">Listen</p>
             <SoundCloudPlayer url={release.soundcloudEmbed} />

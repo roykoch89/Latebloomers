@@ -9,8 +9,7 @@
     { "label": "Tickets", "href": "/tickets" }
   ],
   "socials": [
-    { "label": "Instagram", "href": "https://www.instagram.com/latebloomers.rec/" },
-    { "label": "Discogs", "href": "https://www.discogs.com/label/latebloomers" }
+    { "label": "Instagram", "href": "https://www.instagram.com/latebloomers.rec/" }
   ],
   "email": "latebloomers.rec@gmail.com"
 }
