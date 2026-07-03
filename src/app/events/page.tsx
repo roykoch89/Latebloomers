@@ -36,8 +36,7 @@ function EventCard({ event }: { event: EventType }) {
       alt={event.title}
       width={800}
       height={800}
-      className="transition-opacity duration-300 hover:opacity-85"
-      style={{ width: '100%', height: 'auto', maxHeight: '90vh', objectFit: 'contain' }}
+      className="w-auto max-w-full h-auto max-h-[80vh] block transition-opacity duration-300 hover:opacity-80"
       sizes="(max-width: 768px) 100vw, 65vw"
     />
   ) : (
@@ -63,13 +62,13 @@ function EventCard({ event }: { event: EventType }) {
           </p>
         </div>
 
-        {/* Flyer — clickable with image-only hover for featured upcoming */}
+        {/* Flyer — inline-block so cursor/hover only covers image, not container */}
         {isUpcoming && event.featured ? (
-          <Link href="/tickets" className="block overflow-hidden">
+          <Link href="/tickets" className="inline-block max-w-full">
             {flyerImage}
           </Link>
         ) : (
-          <div>{flyerImage}</div>
+          <div className="inline-block max-w-full">{flyerImage}</div>
         )}
       </div>
 

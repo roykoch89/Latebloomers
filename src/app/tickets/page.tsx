@@ -64,7 +64,8 @@ export default function TicketsPage() {
               alt={featuredEvent.title}
               width={800}
               height={800}
-              style={{ width: '100%', height: 'auto', maxHeight: '90vh', objectFit: 'contain' }}
+              className="w-auto max-w-full h-auto max-h-[80vh] block"
+              sizes="(max-width: 768px) 100vw, 50vw"
               priority
             />
           )}

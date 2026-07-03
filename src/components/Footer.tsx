@@ -27,14 +27,9 @@ export default function Footer() {
           {s.email && (
             <a
               href={`mailto:${s.email}`}
-              className="flex flex-col gap-0.5 group"
+              className="text-xs tracking-widest uppercase text-brand-blue hover:text-brand-yellow transition-colors"
             >
-              <span className="text-xs tracking-widest uppercase text-brand-blue group-hover:text-brand-yellow transition-colors">
-                Mail
-              </span>
-              <span className="text-xs text-brand-dark group-hover:text-brand-yellow/70 transition-colors">
-                {s.email}
-              </span>
+              Mail
             </a>
           )}
         </nav>
