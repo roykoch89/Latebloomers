@@ -9,7 +9,7 @@
     "format": "Vinyl",
     "type": "EP",
     "label": "Latebloomers",
-    "description": "The first bloom grows across four tracks. The Miami Beat$ crew deliver two cuts based on hip hop rooted samples built for moving the dancefloor. On the flip side, label-heads Roy Koch and DJ Z provide two deeper cuts.",
+    "description": "The first bloom grows across four tracks. The Miami Beat$ crew delivers two cuts based on hip hop rooted samples built for moving the dancefloor. On the flip side, label-heads Roy Koch and DJ Z provide two deeper cuts.",
     "artwork": "/images/releases/LATE001-M-SIDE.jpg",
     "images": [
       { "src": "/images/releases/LATE001-M-SIDE.jpg", "alt": "LATE001 M Side", "label": "M Side" },
@@ -18,7 +18,7 @@
     "tracklist": [
       { "position": "A1", "title": "Beet WorldWide & Uncle Franky \u2013 Emotions", "duration": "7:01" },
       { "position": "A2", "title": "Beet WorldWide & Teejay \u2013 Zalt Shaker (Tanzformer Remix)", "duration": "8:27" },
-      { "position": "B1", "title": "Roy Koch (2) \u2013 Settings", "duration": "5:39" },
+      { "position": "B1", "title": "Roy Koch \u2013 Settings", "duration": "5:39" },
       { "position": "B2", "title": "DJ Z \u2013 Japanese Playground", "duration": "7:25" }
     ],
     "links": {

@@ -19,18 +19,18 @@ export default function Header() {
             alt="Latebloomers"
             width={250}
             height={44}
-            className="h-[30px] sm:h-9 md:h-11 w-auto object-contain"
+            className="h-[24px] sm:h-9 md:h-11 w-auto object-contain"
             priority
           />
         </Link>
 
         {/* Navigation */}
-        <nav className="flex items-center gap-4 sm:gap-5 md:gap-8">
+        <nav className="flex items-center gap-[6px] sm:gap-4 md:gap-8">
           {settings.navigation.slice(1).map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[13px] tracking-widest uppercase transition-colors ${
+              className={`text-[10px] sm:text-[13px] tracking-widest uppercase transition-colors ${
                 pathname === item.href
                   ? 'text-brand-blue underline decoration-brand-yellow decoration-2 underline-offset-4'
                   : 'text-stone-400 hover:text-brand-yellow'

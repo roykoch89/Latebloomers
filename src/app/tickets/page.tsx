@@ -52,7 +52,7 @@ export default function TicketsPage() {
       <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-16 md:gap-24 items-start">
 
         {/* Flyer — order-2 on mobile, natural on desktop */}
-        <div className="order-2 md:order-none">
+        <div className="order-2 md:order-none md:pl-[15%]">
           {/* Date + location above flyer */}
           <p className="text-xs tracking-widest uppercase text-stone-400 mb-4">
             {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
@@ -73,7 +73,7 @@ export default function TicketsPage() {
 
         {/* Ticket selector — order-1 on mobile, natural on desktop */}
         <div className="order-1 md:order-none">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-stone-900 mb-2">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight text-brand-navy mb-3">
             {featuredEvent.title}
           </h1>
           <p className="text-xs tracking-widest uppercase text-stone-400 mb-10">

@@ -40,19 +40,19 @@ export default function HomePage() {
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12">
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section className="relative py-10 md:py-16 border-b border-brand-lightBlue/40 overflow-hidden">
-        {/* Flower watermark — top-right corner, partially cropped */}
+        {/* Background1.png — blends into site background, right side only */}
         <div
-          className="absolute -top-4 -right-6 md:-right-12 pointer-events-none select-none"
+          className="absolute top-0 right-0 h-full flex items-center pointer-events-none select-none"
           aria-hidden="true"
         >
           <Image
-            src="/images/brand/avatar1.png"
+            src="/images/brand/Background1.png"
             alt=""
-            width={520}
-            height={520}
-            className="w-[62vw] max-w-[520px] opacity-[0.13]"
+            width={700}
+            height={375}
+            className="w-[52vw] max-w-[580px] opacity-[0.38] [mix-blend-mode:multiply]"
           />
         </div>
 
@@ -66,7 +66,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Featured Event ── */}
+      {/* Featured Event */}
       {featuredEvent && (() => {
         const scUrls: string[] =
           (featuredEvent.soundcloudEmbeds && featuredEvent.soundcloudEmbeds.length > 0)
@@ -77,38 +77,34 @@ export default function HomePage() {
 
         return (
           <section className="py-10 md:py-16 border-b border-brand-lightBlue/40">
-            {/* Grid: [label+date+flyer] | [SC+buttons] — label/date aligned with flyer */}
-            <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-6 md:gap-10 items-start">
-
-              {/* Left: label + date + mobile button + flyer */}
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
-                  <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
-                    Next event
-                  </p>
-                </div>
-                <p className="text-sm tracking-wide uppercase text-stone-600 font-medium mb-4">
-                  {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
+            {/* 15% right shift on desktop */}
+            <div className="md:pl-[15%]">
+              {/* Label + date — above grid, aligned with flyer left edge */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
+                <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+                  Next event
                 </p>
+              </div>
+              <p className="text-sm tracking-wide uppercase text-stone-600 font-medium mb-5">
+                {formatDate(featuredEvent.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{featuredEvent.locationLabel}
+              </p>
 
-                {/* Mobile-only Tickets button */}
-                <Link
-                  href="/tickets"
-                  className="md:hidden block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3 hover:opacity-90 transition-opacity mb-4"
-                >
-                  Tickets
-                </Link>
+              {/*
+                Grid: [flyer] | [SC + buttons]
+                items-center aligns SC vertically with flyer centre
+              */}
+              <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-6 md:gap-10 items-center">
 
-                {/* Flyer — inline-block so hover/cursor only covers image pixels */}
+                {/* Left: flyer — group hover triggers scale on img only */}
                 {featuredEvent.artwork ? (
-                  <Link href="/tickets" className="inline-block max-w-full">
+                  <Link href="/tickets" className="inline-block max-w-full overflow-hidden group">
                     <Image
                       src={featuredEvent.artwork}
                       alt={featuredEvent.title}
                       width={800}
                       height={800}
-                      className="w-auto max-w-full h-auto max-h-[80vh] block transition-opacity duration-300 hover:opacity-80"
+                      className="w-auto max-w-full h-auto max-h-[80vh] block transition-transform duration-500 group-hover:scale-[1.03]"
                       sizes="(max-width: 768px) 100vw, 60vw"
                       priority
                     />
@@ -118,26 +114,35 @@ export default function HomePage() {
                     <span className="text-xs tracking-widest uppercase text-brand-lightBlue">Artwork</span>
                   </div>
                 )}
-              </div>
 
-              {/* Right: SC players + buttons */}
-              <div className="flex flex-col gap-4">
-                {scUrls.map((url, i) => (
-                  <SoundCloudPlayer key={i} url={url} />
-                ))}
-                <div className="flex flex-col gap-3 mt-1">
+                {/* Right: SC + buttons (vertically centred with flyer via items-center) */}
+                <div className="flex flex-col gap-5">
+                  {/* Mobile-only Tickets — appears after flyer, before SC */}
                   <Link
                     href="/tickets"
-                    className="hidden md:block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3.5 hover:opacity-90 transition-opacity"
+                    className="md:hidden block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3 hover:opacity-90 transition-opacity"
                   >
                     Tickets
                   </Link>
-                  <Link
-                    href="/events"
-                    className="text-xs tracking-widest uppercase text-center border border-brand-blue text-brand-blue px-6 py-3.5 hover:bg-brand-blue hover:text-white transition-colors"
-                  >
-                    View All Events
-                  </Link>
+
+                  {scUrls.map((url, i) => (
+                    <SoundCloudPlayer key={i} url={url} />
+                  ))}
+
+                  <div className="flex flex-col gap-3 mt-1">
+                    <Link
+                      href="/tickets"
+                      className="hidden md:block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3.5 hover:opacity-90 transition-opacity"
+                    >
+                      Tickets
+                    </Link>
+                    <Link
+                      href="/events"
+                      className="text-xs tracking-widest uppercase text-center border border-brand-blue text-brand-blue px-6 py-3.5 hover:bg-brand-blue hover:text-white transition-colors"
+                    >
+                      View All Events
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -145,10 +150,10 @@ export default function HomePage() {
         )
       })()}
 
-      {/* ── Releases ── */}
+      {/* Releases */}
       {displayReleases.length > 0 && (
         <section className="py-10 md:py-16">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
               <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
@@ -163,9 +168,9 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Latest release — compact flex row, image same height as text */}
+          {/* Latest release — compact flex row */}
           {latestRelease && (
-            <div className="flex gap-6 md:gap-8 items-start mb-14">
+            <div className="flex gap-6 md:gap-8 items-start mb-12 md:mb-14">
               <Link href={`/releases/${latestRelease.slug}`} className="flex-shrink-0 group">
                 <div className="relative w-36 h-36 md:w-40 md:h-40 overflow-hidden bg-stone-950 cursor-pointer">
                   {latestRelease.artwork ? (
@@ -173,7 +178,7 @@ export default function HomePage() {
                       src={latestRelease.artwork}
                       alt={latestRelease.title}
                       fill
-                      className="object-contain transition-opacity duration-300 group-hover:opacity-80"
+                      className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                       sizes="200px"
                     />
                   ) : (
@@ -221,7 +226,7 @@ export default function HomePage() {
                           src={release.artwork}
                           alt={release.title}
                           fill
-                          className="object-contain transition-opacity duration-300 group-hover:opacity-80"
+                          className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         />
                       ) : (
