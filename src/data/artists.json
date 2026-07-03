@@ -1,0 +1,34 @@
+[
+  {
+    "id": "001",
+    "name": "Giammarco Orsini",
+    "slug": "giammarco-orsini",
+    "bio": null,
+    "photo": null,
+    "socials": {}
+  },
+  {
+    "id": "002",
+    "name": "DJ Tjizza",
+    "slug": "dj-tjizza",
+    "bio": null,
+    "photo": null,
+    "socials": {}
+  },
+  {
+    "id": "003",
+    "name": "Roy Koch",
+    "slug": "roy-koch",
+    "bio": null,
+    "photo": null,
+    "socials": {}
+  },
+  {
+    "id": "004",
+    "name": "DJ Z",
+    "slug": "dj-z",
+    "bio": null,
+    "photo": null,
+    "socials": {}
+  }
+]

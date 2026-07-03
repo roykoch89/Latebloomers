@@ -1,0 +1,15 @@
+﻿{
+  "siteName": "Latebloomers",
+  "tagline": "Electronic music from The Hague.",
+  "domain": "https://wearelatebloomers.nl",
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    { "label": "Releases", "href": "/releases" },
+    { "label": "Events", "href": "/events" },
+    { "label": "Tickets", "href": "/tickets" }
+  ],
+  "socials": [
+    { "label": "Instagram", "href": "https://www.instagram.com/latebloomers.rec/" }
+  ],
+  "email": "latebloomers.rec@gmail.com"
+}
