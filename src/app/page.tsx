@@ -41,7 +41,7 @@ export default function HomePage() {
     <>
       {/* ── Hero ── full-width section, background flower right-cropped */}
       <section
-        className="py-8 md:py-12 border-b border-brand-lightBlue/30"
+        className="py-8 md:py-12"
         style={{
           backgroundImage: 'url(/images/brand/Background1.png)',
           backgroundPosition: 'right bottom',
