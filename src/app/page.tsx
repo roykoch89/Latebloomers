@@ -44,9 +44,9 @@ export default function HomePage() {
         className="py-8 md:py-12 border-b border-brand-lightBlue/30"
         style={{
           backgroundImage: 'url(/images/brand/Background1.png)',
-          backgroundPosition: 'right center',
+          backgroundPosition: 'right bottom',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'auto 160%',
+          backgroundSize: 'auto 50%',
           backgroundColor: '#E8ECF2',
         }}
       >
@@ -161,7 +161,7 @@ export default function HomePage() {
         {/* ── Latest Release ── */}
         {displayReleases.length > 0 && (
           <section className="py-10 md:py-16">
-            <div className="md:pl-[12%]">
+            <div className="md:pl-[12%] md:pr-[12%]">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
@@ -171,7 +171,7 @@ export default function HomePage() {
                 </div>
                 <Link
                   href="/releases"
-                  className="text-xs tracking-widest uppercase text-stone-400 hover:text-brand-blue transition-colors mr-[2%]"
+                  className="text-xs tracking-widest uppercase text-stone-400 hover:text-brand-blue transition-colors"
                 >
                   All releases &rarr;
                 </Link>
