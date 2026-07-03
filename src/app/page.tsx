@@ -48,7 +48,7 @@ export default function HomePage() {
           backgroundPosition: 'right center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'min(52vw, 580px) auto',
-          backgroundBlendMode: 'multiply',
+          backgroundBlendMode: 'luminosity',
           backgroundColor: '#E8ECF2',
         }}
       >
@@ -56,8 +56,8 @@ export default function HomePage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
             Slow growing house music
           </h1>
-          <p className="text-xl md:text-2xl text-stone-500 font-normal leading-snug max-w-md">
-            from the Hague and Rotterdam
+          <p className="text-xl md:text-2xl text-brand-blue font-normal leading-snug max-w-md">
+            from the Hague and Rotterdam with love.
           </p>
         </div>
       </section>
@@ -73,8 +73,8 @@ export default function HomePage() {
 
         return (
           <section className="py-10 md:py-16 border-b border-brand-lightBlue/40">
-            {/* 12% left indent: aligns Next Event label, date, flyer */}
-            <div className="md:pl-[12%]">
+            {/* Balanced 12% margins on both sides */}
+            <div className="md:pl-[12%] md:pr-[12%]">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
                 <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
@@ -89,7 +89,7 @@ export default function HomePage() {
                 Grid items-start: SC top aligns with flyer top (not date text above)
                 Left col = flyer   Right col = SC + buttons with 12% right padding
               */}
-              <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-6 md:gap-10 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 md:gap-6 items-start">
 
                 {/* Flyer */}
                 {featuredEvent.artwork ? (
@@ -110,8 +110,8 @@ export default function HomePage() {
                   </div>
                 )}
 
-                {/* SC + buttons — 12% right padding, items-start aligns top with flyer top */}
-                <div className="md:pr-[12%] flex flex-col gap-5">
+                {/* SC + buttons — outer wrapper provides balanced right margin */}
+                <div className="flex flex-col gap-5">
                   {/* Mobile only: Tickets appears AFTER flyer, BEFORE SC */}
                   <Link
                     href="/tickets"
@@ -124,7 +124,7 @@ export default function HomePage() {
                     <SoundCloudPlayer key={i} url={url} />
                   ))}
 
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-5">
                     <Link
                       href="/tickets"
                       className="hidden md:block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-4 hover:opacity-90 transition-opacity"
@@ -158,7 +158,7 @@ export default function HomePage() {
               </div>
               <Link
                 href="/releases"
-                className="text-xs tracking-widest uppercase text-stone-400 hover:text-brand-blue transition-colors"
+              className="text-xs tracking-widest uppercase text-stone-400 hover:text-brand-blue transition-colors mr-[2%]"
               >
                 All releases &rarr;
               </Link>

@@ -30,7 +30,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[10px] sm:text-[13px] tracking-widest uppercase transition-colors ${
+              className={`text-[11px] sm:text-[13px] tracking-widest uppercase transition-colors ${
                 pathname === item.href
                   ? 'text-brand-blue underline decoration-brand-yellow decoration-2 underline-offset-4'
                   : 'text-stone-400 hover:text-brand-yellow'

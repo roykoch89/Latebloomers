@@ -49,7 +49,7 @@ export default function TicketsPage() {
         Mobile: ticket shop first (order-1), flyer second (order-2)
         Desktop: flyer left (order-none), ticket shop right (order-none)
       */}
-<div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-24 items-start">
+<div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-10 md:gap-8 items-start">
 
         {/* Flyer — order-2 on mobile, natural on desktop */}
         <div className="order-2 md:order-none md:pl-[12%]">
@@ -71,8 +71,8 @@ export default function TicketsPage() {
           )}
         </div>
 
-        {/* Ticket selector — order-1 on mobile, natural on desktop */}
-        <div className="order-1 md:order-none">
+        {/* Ticket selector — order-1 on mobile, balanced right margin on desktop */}
+        <div className="order-1 md:order-none md:pr-[12%]">
           <h1 className="text-xl md:text-2xl font-bold tracking-tight text-brand-navy mb-3">
             {featuredEvent.title}
           </h1>

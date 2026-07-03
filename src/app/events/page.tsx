@@ -22,8 +22,8 @@ function formatDate(dateStr: string) {
 
 /*
  * Upcoming event card
- * Desktop: 12% left indent, flyer left | SC right (items-start = SC top aligns with flyer top)
- * Mobile order: Event info → Flyer → Tickets → SC  (CSS order)
+ * Desktop: equal 12% margins both sides, flyer | SC (items-start = SC top with flyer top)
+ * Mobile order: Event info -> Flyer -> Tickets -> SC (CSS order)
  */
 function UpcomingEventCard({ event }: { event: EventType }) {
   const scUrls: string[] =
@@ -34,9 +34,10 @@ function UpcomingEventCard({ event }: { event: EventType }) {
         : []
 
   return (
-    <article className="py-10 md:py-14 border-b border-stone-200">
-      <div className="md:pl-[12%]">
-        {/* Date + badge — above the flyer grid */}
+    <article className="py-12 md:py-14 border-b border-stone-200">
+      {/* Balanced 12% margins: equal left and right outer spacing */}
+      <div className="md:pl-[12%] md:pr-[12%]">
+        {/* Date + badge above grid */}
         <div className="flex flex-wrap items-center gap-3 mb-5">
           <span className="text-xs tracking-widest uppercase bg-brand-blue text-white px-2 py-1">
             Upcoming
@@ -46,8 +47,8 @@ function UpcomingEventCard({ event }: { event: EventType }) {
           </p>
         </div>
 
-        {/* Grid: items-start — SC TOP aligns with flyer TOP */}
-        <div className="grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-8 md:gap-16 items-start">
+        {/* Grid — items-start: SC top aligns with flyer top */}
+        <div className="grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-10 md:gap-6 items-start">
 
           {/* Flyer with hover */}
           {event.artwork ? (
@@ -67,13 +68,11 @@ function UpcomingEventCard({ event }: { event: EventType }) {
             </div>
           )}
 
-          {/* SC + Tickets — 12% right padding, top aligned with flyer */}
+          {/* SC + Tickets: CSS order controls mobile sequence */}
           {scUrls.length > 0 && (
-            <div className="md:pr-[12%] flex flex-col gap-5">
-              {/*
-                Mobile order: Tickets (order-1) BEFORE SC (order-2)
-                Desktop order: SC (md:order-1) BEFORE Tickets (md:order-2)
-              */}
+            <div className="flex flex-col gap-5">
+              {/* Mobile: Tickets first (order-1), SC second (order-2) */}
+              {/* Desktop: SC first (md:order-1), Tickets second (md:order-2) */}
               <div className="order-2 md:order-1 flex flex-col gap-4">
                 {scUrls.map((url, i) => (
                   <SoundCloudPlayer key={i} url={url} />
@@ -81,7 +80,7 @@ function UpcomingEventCard({ event }: { event: EventType }) {
               </div>
               <Link
                 href="/tickets"
-                className="order-1 md:order-2 block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-4 hover:opacity-90 transition-opacity mt-0 md:mt-0"
+                className="order-1 md:order-2 block text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-4 hover:opacity-90 transition-opacity"
               >
                 Tickets
               </Link>
@@ -95,8 +94,7 @@ function UpcomingEventCard({ event }: { event: EventType }) {
 
 /*
  * Archive event card
- * Desktop: 12% left indent, flyer left | SC right (items-start = SC top aligns with flyer top)
- * No hover on flyer
+ * Desktop: equal 12% margins both sides, no hover on flyer
  */
 function ArchiveEventCard({ event }: { event: EventType }) {
   const scUrls: string[] =
@@ -107,15 +105,16 @@ function ArchiveEventCard({ event }: { event: EventType }) {
         : []
 
   return (
-    <article className="py-10 md:py-14 border-b border-stone-200">
-      <div className="md:pl-[12%]">
-        {/* Date — above the flyer grid */}
+    <article className="py-12 md:py-14 border-b border-stone-200">
+      {/* Balanced 12% margins: equal left and right outer spacing */}
+      <div className="md:pl-[12%] md:pr-[12%]">
+        {/* Date above grid */}
         <p className="text-sm tracking-wide uppercase text-stone-600 font-medium mb-5">
           {formatDate(event.date)}&nbsp;&nbsp;&middot;&nbsp;&nbsp;{event.locationLabel}
         </p>
 
-        {/* Grid: items-start — SC TOP aligns with flyer TOP */}
-        <div className="grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-8 md:gap-16 items-start">
+        {/* Grid — items-start: SC top aligns with flyer top */}
+        <div className="grid grid-cols-1 md:grid-cols-[65fr_35fr] gap-10 md:gap-6 items-start">
 
           {/* Flyer — no hover */}
           <div className="inline-block max-w-full">
@@ -135,9 +134,9 @@ function ArchiveEventCard({ event }: { event: EventType }) {
             )}
           </div>
 
-          {/* SC — 12% right padding, top aligned with flyer */}
+          {/* SC — top aligned with flyer */}
           {scUrls.length > 0 && (
-            <div className="md:pr-[12%] flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
               {scUrls.map((url, i) => (
                 <SoundCloudPlayer key={i} url={url} />
               ))}
@@ -156,7 +155,7 @@ export default function EventsPage() {
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-10 md:py-14">
-      {/* No H1 — per design direction */}
+      {/* No H1 */}
 
       {upcoming.length > 0 && (
         <section className="mb-0">
@@ -166,8 +165,8 @@ export default function EventsPage() {
 
       {past.length > 0 && (
         <section>
-          {/* Archive label — same 12% indent as event cards, same horizontal axis */}
-          <div className="md:pl-[12%]">
+          {/* Archive label — same 12% balanced indent */}
+          <div className="md:pl-[12%] md:pr-[12%]">
             <p className="text-xs tracking-widest uppercase text-stone-400 py-4 border-b border-stone-200 mt-6">
               Archive
             </p>
