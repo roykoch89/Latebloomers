@@ -13,9 +13,11 @@ const config: Config = {
       },
       colors: {
         brand: {
-          blue: '#3B5090',
-          steel: '#B0C5D0',
-          bg: '#F5F7FA',
+          blue: '#6D7AAE',
+          yellow: '#DCDD91',
+          lightBlue: '#BEC7D4',
+          dark: '#111111',
+          bg: '#F0F2F6',
         },
       },
     },
