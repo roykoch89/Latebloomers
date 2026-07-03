@@ -9,26 +9,22 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-stone-200">
+    <header className="sticky top-0 z-50 bg-white border-b border-brand-lightBlue/50">
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between gap-4">
 
-        {/* Logo — left, links to home */}
-        <Link
-          href="/"
-          aria-label="Latebloomers home"
-          className="flex-shrink-0"
-        >
+        {/* Logo — left, responsive sizing */}
+        <Link href="/" aria-label="Latebloomers home" className="flex-shrink-0">
           <Image
-            src="/images/brand/logo-dark.png"
+            src="/images/brand/Latebloomers_logo.png"
             alt="Latebloomers"
-            width={120}
-            height={68}
-            className="h-7 w-auto object-contain"
+            width={250}
+            height={44}
+            className="h-[30px] sm:h-9 md:h-11 w-auto object-contain"
             priority
           />
         </Link>
 
-        {/* Navigation — right */}
+        {/* Navigation */}
         <nav className="flex items-center gap-4 sm:gap-5 md:gap-8">
           {settings.navigation.slice(1).map((item) => (
             <Link
@@ -37,7 +33,7 @@ export default function Header() {
               className={`text-xs tracking-widest uppercase transition-colors ${
                 pathname === item.href
                   ? 'text-brand-blue'
-                  : 'text-stone-400 hover:text-stone-900'
+                  : 'text-stone-400 hover:text-brand-yellow'
               }`}
             >
               {item.label}

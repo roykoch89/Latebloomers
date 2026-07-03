@@ -8,7 +8,7 @@ export default function SoundCloudPlayer({ url, className = '' }: SoundCloudPlay
   const height = isPlaylist ? 270 : 150
   const embedUrl =
     `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}` +
-    `&color=%233B5090&auto_play=false&hide_related=true` +
+    `&color=%236D7AAE&auto_play=false&hide_related=true` +
     `&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`
 
   return (

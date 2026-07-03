@@ -8,13 +8,14 @@ html {
 }
 
 body {
-  background-color: #F5F7FA;
-  @apply text-stone-900;
+  background-color: #F0F2F6;
+  color: #111111;
 }
 
 /* Smooth focus ring */
 :focus-visible {
-  @apply outline-2 outline-offset-2 outline-stone-900;
+  outline: 2px solid #6D7AAE;
+  outline-offset: 2px;
 }
 
 /* Responsive SoundCloud iframe */

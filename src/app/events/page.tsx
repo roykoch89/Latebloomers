@@ -82,7 +82,7 @@ function EventCard({ event }: { event: EventType }) {
           {isUpcoming && event.featured && (
             <Link
               href="/tickets"
-              className="text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3.5 hover:bg-stone-900 transition-colors"
+              className="text-xs tracking-widest uppercase text-center bg-brand-blue text-white px-6 py-3.5 hover:opacity-90 transition-opacity"
             >
               Tickets
             </Link>
@@ -100,7 +100,7 @@ export default function EventsPage() {
 
   return (
     <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-12 md:py-16">
-      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-stone-900 leading-none mb-16 md:mb-20">
+      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-brand-dark leading-none mb-16 md:mb-20">
         Events
       </h1>
 
