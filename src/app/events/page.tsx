@@ -84,7 +84,7 @@ function EventSection({ event, showTickets }: { event: EventType; showTickets: b
           {/* Right: Featured Artists + SC players */}
           {scUrls.length > 0 && (
             <div className="flex flex-col gap-5">
-              <p className="hidden md:block text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+              <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
                 Featured Artists
               </p>
 

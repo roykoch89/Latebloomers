@@ -41,7 +41,7 @@ export default function HomePage() {
     <>
       {/* ── Hero ── full-width section, background flower right-cropped */}
       <section
-        className="py-8 md:py-12"
+        className="py-10 flex items-center min-h-[45vh] md:min-h-[52vh]"
         style={{
           backgroundImage: 'url(/images/brand/Background1.png)',
           backgroundPosition: 'right bottom',
@@ -50,14 +50,18 @@ export default function HomePage() {
           backgroundColor: '#E8ECF2',
         }}
       >
-        <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
-            Slow Growing<br />
-            House Music
-          </h1>
-          <p className="text-base md:text-lg text-brand-blue font-normal leading-snug max-w-lg">
-            rooted in the Hague and Rotterdam.
-          </p>
+        {/* Outer container constrains max-width + applies page padding */}
+        <div className="max-w-screen-xl mx-auto px-6 md:px-12 w-full flex justify-center">
+          {/* Inner block shrinks to H1 width; text stays left-aligned within it */}
+          <div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
+              Slow Growing<br />
+              House Music
+            </h1>
+            <p className="text-base md:text-lg text-brand-blue font-normal leading-snug">
+              rooted in the Hague and Rotterdam.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -117,8 +121,8 @@ export default function HomePage() {
 
                   {/* Right: Featured Artists + SC players */}
                   <div className="flex flex-col gap-5">
-                    {/* "FEATURED ARTISTS" label — aligned with flyer top on desktop */}
-                    <p className="hidden md:block text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+                    {/* "FEATURED ARTISTS" label */}
+                    <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
                       Featured Artists
                     </p>
 

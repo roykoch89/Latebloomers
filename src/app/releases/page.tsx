@@ -97,7 +97,17 @@ function LatestRelease({ release }: { release: ReleaseExt }) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 items-start">
 
       {/* Left: sticky carousel — linkUrl enables artwork click-to-buy */}
-      <div className="md:sticky md:top-20 overflow-visible">
+      <div className="md:sticky md:top-20 overflow-visible md:max-w-[87%]">
+        {/* Mobile only: catalog + format label above the image */}
+        <div className="md:hidden mb-3">
+          <span className="text-sm tracking-widest uppercase text-brand-blue font-semibold">
+            {release.catalogNumber}
+          </span>
+          <span className="text-brand-lightBlue mx-2">|</span>
+          <span className="text-sm tracking-widest uppercase text-stone-400">
+            {release.format} &middot; {release.type}
+          </span>
+        </div>
         {images.length > 0 ? (
           <ImageCarousel images={images} priority linkUrl={release.buyUrl ?? undefined} />
         ) : (
@@ -111,7 +121,7 @@ function LatestRelease({ release }: { release: ReleaseExt }) {
 
       {/* Right: release info */}
       <div>
-        <div className="flex items-center gap-3 mb-4">
+        <div className="hidden md:flex items-center gap-3 mb-4">
           <span className="text-xs tracking-widest uppercase text-brand-blue font-semibold">
             {release.catalogNumber}
           </span>
