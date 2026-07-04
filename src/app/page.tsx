@@ -55,10 +55,9 @@ export default function HomePage() {
           {/* Inner block shrinks to H1 width; text stays left-aligned within it */}
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
-              Slow Growing<br />
-              House Music
+              Slow Growing House Music
             </h1>
-            <p className="text-base md:text-lg text-brand-blue font-normal leading-snug">
+            <p className="text-lg md:text-xl text-brand-blue font-normal leading-snug">
               rooted in the Hague and Rotterdam.
             </p>
           </div>
@@ -121,8 +120,8 @@ export default function HomePage() {
 
                   {/* Right: Featured Artists + SC players */}
                   <div className="flex flex-col gap-5">
-                    {/* "FEATURED ARTISTS" label */}
-                    <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+                    {/* "FEATURED ARTISTS" label — order-2 on mobile (below Tickets), first on desktop */}
+                    <p className="order-2 md:order-none mt-4 md:mt-0 text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
                       Featured Artists
                     </p>
 
@@ -134,7 +133,7 @@ export default function HomePage() {
                       Tickets
                     </Link>
 
-                    <div className="order-2 md:order-none flex flex-col gap-4">
+                    <div className="order-3 md:order-none flex flex-col gap-4">
                       {scUrls.map((url, i) => (
                         <SoundCloudPlayer key={i} url={url} />
                       ))}

@@ -84,7 +84,7 @@ function EventSection({ event, showTickets }: { event: EventType; showTickets: b
           {/* Right: Featured Artists + SC players */}
           {scUrls.length > 0 && (
             <div className="flex flex-col gap-5">
-              <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
+              <p className="order-2 md:order-none mt-4 md:mt-0 text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
                 Featured Artists
               </p>
 
@@ -98,7 +98,7 @@ function EventSection({ event, showTickets }: { event: EventType; showTickets: b
                 </Link>
               )}
 
-              <div className="order-2 md:order-none flex flex-col gap-4">
+              <div className="order-3 md:order-none flex flex-col gap-4">
                 {scUrls.map((url, i) => (
                   <SoundCloudPlayer key={i} url={url} />
                 ))}
