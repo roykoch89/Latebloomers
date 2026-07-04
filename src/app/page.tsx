@@ -41,7 +41,7 @@ export default function HomePage() {
     <>
       {/* ── Hero ── full-width section, background flower right-cropped */}
       <section
-        className="py-10 flex items-center min-h-[45vh] md:min-h-[52vh]"
+        className="py-5 md:py-10 flex items-center min-h-[30vh] md:min-h-[52vh]"
         style={{
           backgroundImage: 'url(/images/brand/Background1.png)',
           backgroundPosition: 'right bottom',
@@ -55,7 +55,7 @@ export default function HomePage() {
           {/* Inner block shrinks to H1 width; text stays left-aligned within it */}
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
-              Slow Growing House Music
+              Slow Growing<br className="md:hidden" /> House Music
             </h1>
             <p className="text-lg md:text-xl text-brand-blue font-normal leading-snug">
               rooted in the Hague and Rotterdam.
