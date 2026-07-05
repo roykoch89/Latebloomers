@@ -33,20 +33,14 @@ function EventSection({ event, showTickets }: { event: EventType; showTickets: b
     <section className="py-10 md:py-16 border-b border-brand-lightBlue/40">
       <div className="md:pl-[12%] md:pr-[12%]">
 
-        {/* Editorial event header — same pattern as home page */}
-        <div className="mb-6 md:mb-8">
-          <div className="flex items-center gap-2 mb-3">
+        {/* Date + location removed — visible on the flyer */}
+        <div className="mb-4 md:mb-5">
+          <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
             <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
               {isUpcoming ? 'Upcoming' : 'Archive'}
             </p>
           </div>
-          <p className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-brand-navy leading-none">
-            {formatDate(event.date)}
-          </p>
-          <p className="text-base md:text-lg tracking-widest uppercase text-stone-600 font-medium mt-2">
-            {event.locationLabel}
-          </p>
         </div>
 
         {/* Grid 50/50: Flyer | Featured Artists — same as home page */}
@@ -128,7 +122,7 @@ export default function EventsPage() {
   const past = typedEvents.filter((e) => e.status === 'past')
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+    <div className="max-w-screen-xl mx-auto px-6 md:px-8">
       {upcoming.map((e) => (
         <EventSection key={e.id} event={e} showTickets />
       ))}

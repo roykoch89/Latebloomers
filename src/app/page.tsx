@@ -41,23 +41,17 @@ export default function HomePage() {
     <>
       {/* ── Hero ── full-width section, background flower right-cropped */}
       <section
-        className="py-5 md:py-10 flex items-center min-h-[30vh] md:min-h-[52vh]"
+        className="py-5 md:py-8 flex items-center min-h-[30vh] md:min-h-[38vh]"
         style={{
-          backgroundImage: 'url(/images/brand/Background1.png)',
-          backgroundPosition: 'right bottom',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'auto 50%',
           backgroundColor: '#E8ECF2',
         }}
       >
-        {/* Outer container constrains max-width + applies page padding */}
-        <div className="max-w-screen-xl mx-auto px-6 md:px-12 w-full flex justify-center">
-          {/* Inner block shrinks to H1 width; text stays left-aligned within it */}
-          <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-navy leading-tight mb-4">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-8 w-full">
+          <div className="md:pl-[12%]">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-brand-navy leading-tight mb-3 max-w-[820px]">
               Slow Growing<br className="md:hidden" /> House Music
             </h1>
-            <p className="text-lg md:text-xl text-brand-blue font-normal leading-snug">
+            <p className="text-lg md:text-xl text-brand-blue font-normal leading-snug max-w-[600px]">
               rooted in the Hague and Rotterdam.
             </p>
           </div>
@@ -65,7 +59,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Main content ── constrained container */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-8">
 
         {/* ── Featured Event ── */}
         {featuredEvent && (() => {
@@ -80,20 +74,14 @@ export default function HomePage() {
             <section className="py-10 md:py-16 border-b border-brand-lightBlue/40">
               <div className="md:pl-[12%] md:pr-[12%]">
 
-                {/* Editorial event header */}
-                <div className="mb-6 md:mb-8">
-                  <div className="flex items-center gap-2 mb-3">
+                {/* Editorial event header — date + location removed, visible on flyer */}
+                <div className="mb-4 md:mb-5">
+                  <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow flex-shrink-0" aria-hidden="true" />
                     <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
                       Next event
                     </p>
                   </div>
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-brand-navy leading-none">
-                    {formatDate(featuredEvent.date)}
-                  </p>
-                  <p className="text-base md:text-lg tracking-widest uppercase text-stone-600 font-medium mt-2">
-                    {featuredEvent.locationLabel}
-                  </p>
                 </div>
 
                 {/* Grid 50/50: Flyer | Featured Artists */}

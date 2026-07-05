@@ -30,7 +30,7 @@ export default function ReleasesPage() {
   const [latest, ...rest] = sorted
 
   return (
-<div className="max-w-screen-xl mx-auto px-6 md:px-12 py-10 md:py-16">
+<div className="max-w-screen-xl mx-auto px-6 md:px-8 py-10 md:py-16">
 
       {latest && <LatestRelease release={latest} />}
 

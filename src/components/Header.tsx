@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-brand-bg">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-[70px] flex items-center justify-between gap-4">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-8 h-[70px] flex items-center justify-between gap-4">
 
         {/* Logo — left, responsive sizing */}
         <Link href="/" aria-label="Latebloomers home" className="flex-shrink-0 transition-opacity duration-300 hover:opacity-70">
@@ -33,7 +33,7 @@ export default function Header() {
               className={`text-[11px] sm:text-[13px] tracking-wide sm:tracking-widest uppercase transition-colors ${
                 pathname === item.href
                   ? 'text-brand-blue underline decoration-brand-yellow decoration-2 underline-offset-4'
-                  : 'text-stone-400 hover:text-brand-yellow'
+                  : 'text-stone-600 hover:text-brand-yellow'
               }`}
             >
               {item.label}

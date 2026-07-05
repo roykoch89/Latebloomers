@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-20 md:py-28">
+    <div className="max-w-screen-xl mx-auto px-6 md:px-8 py-20 md:py-28">
       <SectionTitle label="Latebloomers" title="About" />
 
       <div className="max-w-2xl space-y-8">

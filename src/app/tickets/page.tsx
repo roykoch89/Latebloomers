@@ -43,7 +43,7 @@ export default function TicketsPage() {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-8">
       <section className="py-10 md:py-16 border-b border-brand-lightBlue/40">
         <div className="md:pl-[12%] md:pr-[12%]">
 

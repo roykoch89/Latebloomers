@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   },
   description: settings.tagline,
   metadataBase: new URL(settings.domain),
+  openGraph: {
+    images: [{ url: '/images/brand/Latebloomers_logo.png', alt: 'Latebloomers' }],
+  },
 }
 
 export default function RootLayout({

@@ -8,7 +8,7 @@ const s = settings as Settings
 export default function Footer() {
   return (
     <footer className="border-t border-stone-200 mt-12 md:mt-20 bg-white">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 py-10
+      <div className="max-w-screen-xl mx-auto px-6 md:px-8 py-10
                       flex flex-col md:flex-row items-start justify-end gap-8">
 
         {/* Socials + mail */}
