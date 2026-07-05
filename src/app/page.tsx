@@ -48,8 +48,8 @@ export default function HomePage() {
       >
         <div className="max-w-screen-xl mx-auto px-6 md:px-8 w-full">
           <div className="md:pl-[12%]">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-brand-navy leading-tight mb-3 max-w-[820px]">
-              Slow Growing<br className="md:hidden" /> House Music
+            <h1 className="text-[3.3rem] md:text-[4.125rem] lg:text-[4.95rem] font-bold tracking-tight text-brand-navy leading-tight mb-3 max-w-[820px]">
+              Slow Growing<br /> House Music
             </h1>
             <p className="text-lg md:text-xl text-brand-blue font-normal leading-snug max-w-[600px]">
               rooted in the Hague and Rotterdam.

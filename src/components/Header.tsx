@@ -19,7 +19,7 @@ export default function Header() {
             alt="Latebloomers"
             width={250}
             height={44}
-            className="h-[22px] sm:h-[40px] md:h-[48px] w-auto object-contain"
+            className="h-[25px] sm:h-[40px] md:h-[48px] w-auto object-contain"
             priority
           />
         </Link>
