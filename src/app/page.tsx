@@ -46,7 +46,7 @@ export default function HomePage() {
           backgroundColor: '#E8ECF2',
         }}
       >
-        <div className="max-w-screen-xl mx-auto px-6 md:px-8 w-full">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8 w-full">
           <div className="md:pl-[12%]">
             <h1 className="text-[3.3rem] md:text-[4.125rem] lg:text-[4.95rem] font-bold tracking-tight text-brand-navy leading-tight mb-3 max-w-[820px]">
               Slow Growing<br /> House Music
@@ -59,7 +59,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Main content ── constrained container */}
-      <div className="max-w-screen-xl mx-auto px-6 md:px-8">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-8">
 
         {/* ── Featured Event ── */}
         {featuredEvent && (() => {

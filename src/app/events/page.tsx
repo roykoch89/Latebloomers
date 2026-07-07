@@ -122,7 +122,7 @@ export default function EventsPage() {
   const past = typedEvents.filter((e) => e.status === 'past')
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-8">
+    <div className="max-w-[1440px] mx-auto px-6 md:px-8">
       {upcoming.map((e) => (
         <EventSection key={e.id} event={e} showTickets />
       ))}

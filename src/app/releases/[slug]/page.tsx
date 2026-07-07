@@ -60,7 +60,7 @@ export default async function ReleaseDetailPage({
       : []
 
   return (
-    <div className="max-w-screen-xl mx-auto px-6 md:px-8 py-12 md:py-20">
+    <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-12 md:py-20">
 
       <p className="text-xs tracking-widest uppercase text-stone-400 mb-10">
         <a href="/releases" className="hover:text-brand-blue transition-colors">Releases</a>
