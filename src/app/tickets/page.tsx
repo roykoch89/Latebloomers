@@ -48,7 +48,7 @@ export default function TicketsPage() {
           {/* Grid: Flyer (left) | Widget + Info (right)
               Mobile order: widget → info → flyer
               Desktop order: flyer left, widget+info right */}
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4 md:gap-10 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-6 md:gap-10 items-start">
 
             {/* Left col / mobile last: Flyer */}
             <div className="order-3 md:order-none">
@@ -72,16 +72,21 @@ export default function TicketsPage() {
               <WeeztixWidget />
 
               {/* ── Event information ── */}
-              <div className="mt-8 md:mt-10 flex flex-col divide-y divide-brand-lightBlue/30">
+              <div className="mt-3 md:mt-6 flex flex-col divide-y divide-brand-lightBlue/30">
 
-                {/* Intro — slightly elevated weight, reads as event intro not a heading */}
-                <p className="text-[0.875rem] text-stone-700 leading-relaxed pb-6">
-                  With the beach as our backdrop, Giammarco Orsini and DJ Tjizza, with support
-                  from Roy Koch and DJ Z, will take us from golden hour into the night with a
-                  selection of underground house music at Boomerang Beach Club. Expect quality
-                  music, a relaxed atmosphere, and a dancefloor of like-minded music lovers.
-                  This gathering celebrates the first-ever Latebloomers release.
-                </p>
+                {/* Description */}
+                <div className="pb-6">
+                  <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold mb-3">
+                    Description
+                  </p>
+                  <p className="text-[0.875rem] text-stone-700 leading-relaxed">
+                    With the beach as our backdrop, Giammarco Orsini and DJ Tjizza, with support
+                    from Roy Koch and DJ Z, will take us from the golden hour into the night with a
+                    selection of underground house music at Boomerang Beach Club. Expect quality
+                    music and a dancefloor of like-minded music lovers. This gathering celebrates
+                    the first Latebloomers release.
+                  </p>
+                </div>
 
                 {/* Tickets */}
                 <div className="py-6">

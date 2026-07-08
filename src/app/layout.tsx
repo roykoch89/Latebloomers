@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: settings.tagline,
   metadataBase: new URL(settings.domain),
   openGraph: {
-    images: [{ url: '/images/brand/avatar1.png', width: 1500, height: 1500, alt: 'Latebloomers' }],
+    images: [{ url: '/images/brand/og-image.png', width: 1200, height: 1200, alt: 'Latebloomers' }],
   },
 }
 
