@@ -1,4 +1,4 @@
-﻿// HOME PAGE
+// HOME PAGE
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -48,7 +48,7 @@ export default function HomePage() {
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-8 w-full">
           <div className="md:pl-[12%]">
-            <h1 className="text-[3.3rem] md:text-[4.125rem] lg:text-[4.95rem] font-bold tracking-tight text-brand-navy leading-tight mb-3 max-w-[820px]">
+            <h1 className="text-[3.3rem] md:text-[4.125rem] lg:text-[4.95rem] font-bold tracking-tight text-brand-navy leading-[0.9] mb-3 max-w-[820px]">
               Slow Growing<br /> House Music
             </h1>
             <p className="text-lg md:text-xl text-brand-blue font-normal leading-snug max-w-[600px]">
