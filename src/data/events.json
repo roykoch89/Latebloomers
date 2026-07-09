@@ -10,7 +10,10 @@
     "locationLabel": "The Hague",
     "type": "club night",
     "status": "upcoming",
-    "description": "Latebloomers returns to Boomerang for a night of deep, percussive, and hypnotic sounds.",
+    "description": [
+      "Join us at Boomerang as Giammarco Orsini and DJ Tjizza take us from the golden hour into the summer night with a selection of deep house and techno. Supported by label heads Roy Koch and DJ Z.",
+      "A special night as we celebrate the launch of our first Latebloomers release, bringing together quality music, a cozy beach setting, and a dancefloor filled with like-minded music lovers."
+    ],
     "lineup": [
       { "name": "Giammarco Orsini", "order": 1 },
       { "name": "DJ Tjizza", "order": 2 },

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 type EventType = (typeof events)[number] & {
   soundcloudEmbed?: string
   soundcloudEmbeds?: string[]
+  description?: string | string[] | null
 }
 
 function formatDate(dateStr: string) {
@@ -78,6 +79,18 @@ function EventSection({ event, showTickets }: { event: EventType; showTickets: b
           {/* Right: Featured Artists + SC players */}
           {scUrls.length > 0 && (
             <div className="flex flex-col gap-5">
+              {event.description && (
+                <div>
+                  <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold mb-3">
+                    Description
+                  </p>
+                  <div className="text-[0.875rem] text-stone-700 leading-relaxed space-y-3">
+                    {(Array.isArray(event.description) ? event.description : [event.description]).map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              )}
               <p className="order-2 md:order-none mt-4 md:mt-0 text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold">
                 Featured Artists
               </p>

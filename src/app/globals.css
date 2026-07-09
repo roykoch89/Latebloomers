@@ -26,14 +26,14 @@ body {
 }
 
 /* Weeztix ticket widget — scoped overrides */
-.ot-iframe a {
+.weeztix-widget a {
   text-decoration: none;
   color: #464feb;
 }
-.ot-iframe tr th,
-.ot-iframe tr td {
+.weeztix-widget tr th,
+.weeztix-widget tr td {
   border: 1px solid #e6e6e6;
 }
-.ot-iframe tr th {
+.weeztix-widget tr th {
   background-color: #f5f5f5;
 }

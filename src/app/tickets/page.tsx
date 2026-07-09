@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   title: 'Tickets',
 }
 
-const featuredEvent = events.find((e) => e.featured && e.status === 'upcoming')
+type EventWithDescription = (typeof events)[number] & {
+  description?: string | string[] | null
+}
+
+const featuredEvent = (events as EventWithDescription[]).find((e) => e.featured && e.status === 'upcoming')
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
@@ -75,18 +79,21 @@ export default function TicketsPage() {
               <div className="mt-3 md:mt-6 flex flex-col divide-y divide-brand-lightBlue/30">
 
                 {/* Description */}
-                <div className="pb-6">
-                  <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold mb-3">
-                    Description
-                  </p>
-                  <p className="text-[0.875rem] text-stone-700 leading-relaxed">
-                    With the beach as our backdrop, Giammarco Orsini and DJ Tjizza, with support
-                    from Roy Koch and DJ Z, will take us from the golden hour into the night with a
-                    selection of underground house music at Boomerang Beach Club. Expect quality
-                    music and a dancefloor of like-minded music lovers. This gathering celebrates
-                    the first Latebloomers release.
-                  </p>
-                </div>
+                {featuredEvent.description && (
+                  <div className="pb-6">
+                    <p className="text-[0.65rem] tracking-[0.2em] uppercase text-brand-blue font-semibold mb-3">
+                      Description
+                    </p>
+                    <div className="text-[0.875rem] text-stone-700 leading-relaxed space-y-3">
+                      {(Array.isArray(featuredEvent.description)
+                        ? featuredEvent.description
+                        : [featuredEvent.description]
+                      ).map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Tickets */}
                 <div className="py-6">
