@@ -1,4 +1,4 @@
-﻿// HOME PAGE
+// HOME PAGE
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -177,7 +177,7 @@ export default function HomePage() {
                           src={latestRelease.artwork}
                           alt={latestRelease.title}
                           fill
-                          className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                           sizes="200px"
                         />
                       ) : (
@@ -225,7 +225,7 @@ export default function HomePage() {
                             src={release.artwork}
                             alt={release.title}
                             fill
-                            className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           />
                         ) : (
