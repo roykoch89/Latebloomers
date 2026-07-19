@@ -145,9 +145,11 @@ function LatestRelease({ release }: { release: ReleaseExt }) {
         )}
 
         {release.description && (
-          <p className="text-sm text-stone-600 leading-relaxed border-t border-brand-lightBlue/30 pt-6 mb-6">
-            {release.description}
-          </p>
+          <div className="text-sm text-stone-600 leading-relaxed border-t border-brand-lightBlue/30 pt-6 mb-6 space-y-4">
+            {(Array.isArray(release.description) ? release.description : [release.description]).map((para, i) => (
+              <p key={i} dangerouslySetInnerHTML={{ __html: para }} />
+            ))}
+          </div>
         )}
 
         {tracklist.length > 0 && (

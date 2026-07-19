@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": "001",
     "catalogNumber": "LATE001",
@@ -9,17 +9,15 @@
     "format": "Vinyl",
     "type": "EP",
     "label": "Latebloomers",
-    "description": "Latebloomers introduce The First Bloom, their debut EP, ready to heat up summer dancefloors.
-
-From playful ghetto-infused house grooves to deeper, hypnotic cuts, The First Bloom brings together five artists connected by friendship and a shared love for underground dance music.
-
-The A-side features Miami Beat$ representatives BeetWorldWide, Uncle Franky, and Teejay joining forces on two nostalgic, hip-hop-inspired cuts. On the B-side, label founders Roy Koch and DJ Z each deliver a solo track, exploring deeper grooves and planting the seed for the Latebloomers sound.
-
-Rooted in the belief that growth unfolds at its own pace, The First Bloom marks the beginning of Latebloomers.",
-    "artwork": "/images/releases/LATE001-M-SIDE.jpg",
+    "description": [
+      "Latebloomers introduce The First Bloom, their debut EP, ready to heat up summer dancefloors.",
+      "From playful ghetto-infused house grooves to deeper, hypnotic cuts, The First Bloom brings together five artists connected by friendship and a shared love for underground dance music.",
+      "The A-side features Miami Beat$ representatives BeetWorldWide, Uncle Franky, and Teejay joining forces on two nostalgic, hip-hop-inspired cuts. On the B-side, label founders Roy Koch and DJ Z each deliver a solo track, exploring deeper grooves and planting the seed for the Latebloomers sound.",
+      "Rooted in the belief that growth unfolds at its own pace, The First Bloom marks the beginning of Latebloomers."
+    ],
+    "artwork": "/images/releases/LATE001.jpeg",
     "images": [
-     { "src": "/images/releases/LATE001-M-SIDE.jpg", "alt": "LATE001 M Side", "label": "M Side" },
-      { "src": "/images/releases/LATE001-Z-SIDE.jpg", "alt": "LATE001 Z Side", "label": "Z Side" }
+      { "src": "/images/releases/LATE001.jpeg", "alt": "The First Bloom — LATE001" }
     ],
     "tracklist": [
       { "position": "A1", "title": "Beet WorldWide & Uncle Franky \u2013 Emotions", "duration": "7:01" },
@@ -36,7 +34,7 @@ Rooted in the belief that growth unfolds at its own pace, The First Bloom marks 
       "beatport": null
     },
     "buyUrl": "https://tanzform.com/products/various-late-bloomers-001-late001",
-    "buyLabel": "OUT NOW",
+    "buyLabel": "Order",
     "soundcloudEmbed": "https://soundcloud.com/latebloomers-808590229/sets/first-bloom/s-cBtuNdVWvOf",
     "soundcloudVisible": false,
     "credits": [
