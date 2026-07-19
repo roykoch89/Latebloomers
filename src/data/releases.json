@@ -18,7 +18,8 @@ The A-side features Miami Beat$ representatives BeetWorldWide, Uncle Franky, and
 Rooted in the belief that growth unfolds at its own pace, The First Bloom marks the beginning of Latebloomers.",
     "artwork": "/images/releases/LATE001-M-SIDE.jpg",
     "images": [
-      { "src": "/images/releases/LATE001-M-SIDE.jpg", "alt": "LATE001 M Side", "label": "Artwork"}
+     { "src": "/images/releases/LATE001-M-SIDE.jpg", "alt": "LATE001 M Side", "label": "M Side" },
+      { "src": "/images/releases/LATE001-Z-SIDE.jpg", "alt": "LATE001 Z Side", "label": "Z Side" }
     ],
     "tracklist": [
       { "position": "A1", "title": "Beet WorldWide & Uncle Franky \u2013 Emotions", "duration": "7:01" },
