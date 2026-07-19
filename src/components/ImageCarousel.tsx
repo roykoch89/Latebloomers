@@ -31,7 +31,7 @@ export default function ImageCarousel({ images, priority = false, linkUrl }: Ima
         src={images[current].src}
         alt={images[current].alt}
         fill
-        className="object-contain"
+        className="object-cover"
         sizes="(max-width: 768px) 100vw, 50vw"
         priority={priority && current === 0}
       />
